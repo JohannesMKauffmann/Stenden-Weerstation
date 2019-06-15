@@ -19,6 +19,7 @@ namespace Stenden_Weerstation
 		private TrendController tController { get; set; }
 		private bool metricSystem { get; set; }
 		private int CityId { get; set; }
+		public string location { get; set; }
 
 		private const int DefaultCityId = 2756136;
 
@@ -29,11 +30,12 @@ namespace Stenden_Weerstation
 			tController = new TrendController();
 			metricSystem = false;
 			CityId = 2756136;
+			location = CultureInfo.CurrentCulture.ToString().Substring(3);
 		}
 
 		private void Weerstation_Load(object sender, EventArgs e)
 		{
-
+			wController.SendWeatherRequest(CityId, metricSystem, location);
 		}
 
 		private void SaveSettingsButton_Click(object sender, EventArgs e)
@@ -69,8 +71,8 @@ namespace Stenden_Weerstation
 				{
 					JsonSerializer serializer = new JsonSerializer();
 					List<Plaats> plaatsenLijst = (List<Plaats>) serializer.Deserialize(file, typeof(List<Plaats>));
+					//TODO: dropdown met input, lijst van plaatsnaam + land
 					//Dictionary<int, string> matches = new Dictionary<int, string>();
-					string location = CultureInfo.CurrentUICulture.ToString().Substring(3);
 					bool found = false;
 					int index = 0;
 					int length = plaatsenLijst.Count();
