@@ -552,7 +552,7 @@
         Z1ACiiig25iOiiitA5j/2Q==
 </value>
   </data>
-  <data name="pictureBox3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="StendenLogoActueelPictureBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMUAAACKCAYAAAAaNo5JAAAABGdBTUEAALGPC/xhBQAAKZdJREFUeF7t
         nXdgTdcfwG8GVVtVEYlIEIRIIjIIMWJXWq31U21q1AwJguy9hxARQRCxRwghJEbMRGpvUjVabXVoValV
@@ -1169,7 +1169,7 @@
         Z1ACiiig25iOiiitA5j/2Q==
 </value>
   </data>
-  <data name="pictureBox2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="StendenLogoTrendPictureBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMUAAACKCAYAAAAaNo5JAAAABGdBTUEAALGPC/xhBQAAKZdJREFUeF7t
         nXdgTdcfwG8GVVtVEYlIEIRIIjIIMWJXWq31U21q1AwJguy9hxARQRCxRwghJEbMRGpvUjVabXVoValV
@@ -1786,7 +1786,7 @@
         Z1ACiiig25iOiiitA5j/2Q==
 </value>
   </data>
-  <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="StendenLogoOptiesPictureBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMUAAACKCAYAAAAaNo5JAAAABGdBTUEAALGPC/xhBQAAKZdJREFUeF7t
         nXdgTdcfwG8GVVtVEYlIEIRIIjIIMWJXWq31U21q1AwJguy9hxARQRCxRwghJEbMRGpvUjVabXVoValV

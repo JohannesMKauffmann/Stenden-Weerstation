@@ -34,34 +34,34 @@
 			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.MainTabControl = new System.Windows.Forms.TabControl();
 			this.ActueelTabPage = new System.Windows.Forms.TabPage();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.ActueelMainLabel = new System.Windows.Forms.Label();
+			this.WeerstationActueelLabel = new System.Windows.Forms.Label();
+			this.StendenLogoActueelPictureBox = new System.Windows.Forms.PictureBox();
 			this.TrendTabPage = new System.Windows.Forms.TabPage();
-			this.label2 = new System.Windows.Forms.Label();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.WeatherTrendChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+			this.WeerstationTrendLabel = new System.Windows.Forms.Label();
+			this.StendenLogoTrendPictureBox = new System.Windows.Forms.PictureBox();
 			this.OptiesTabPage = new System.Windows.Forms.TabPage();
-			this.PLaatsTextBox = new System.Windows.Forms.TextBox();
+			this.SaveSettingsButton = new System.Windows.Forms.Button();
+			this.CelciusRadioButton = new System.Windows.Forms.RadioButton();
+			this.FahrenheitRadioButton = new System.Windows.Forms.RadioButton();
+			this.SecondenLabel = new System.Windows.Forms.Label();
+			this.IntervalTextBox = new System.Windows.Forms.TextBox();
+			this.PlaatsTextBox = new System.Windows.Forms.TextBox();
 			this.WeergaveLabel = new System.Windows.Forms.Label();
 			this.IntervalLabel = new System.Windows.Forms.Label();
-			this.PLaatsLabel = new System.Windows.Forms.Label();
-			this.BoxLabel = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.IntervalTextBox = new System.Windows.Forms.TextBox();
-			this.SecondenLabel = new System.Windows.Forms.Label();
-			this.FahrenheitRadioButton = new System.Windows.Forms.RadioButton();
-			this.CelciusRadioButton = new System.Windows.Forms.RadioButton();
-			this.SaveSettingsButton = new System.Windows.Forms.Button();
-			this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+			this.PlaatsLabel = new System.Windows.Forms.Label();
+			this.OptiesMainLabel = new System.Windows.Forms.Label();
+			this.WeerstationOptiesLabel = new System.Windows.Forms.Label();
+			this.StendenLogoOptiesPictureBox = new System.Windows.Forms.PictureBox();
 			this.MainTabControl.SuspendLayout();
 			this.ActueelTabPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.StendenLogoActueelPictureBox)).BeginInit();
 			this.TrendTabPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.WeatherTrendChart)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.StendenLogoTrendPictureBox)).BeginInit();
 			this.OptiesTabPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.StendenLogoOptiesPictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// MainTabControl
@@ -78,9 +78,9 @@
 			// ActueelTabPage
 			// 
 			this.ActueelTabPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ActueelTabPage.BackgroundImage")));
-			this.ActueelTabPage.Controls.Add(this.label4);
-			this.ActueelTabPage.Controls.Add(this.label3);
-			this.ActueelTabPage.Controls.Add(this.pictureBox3);
+			this.ActueelTabPage.Controls.Add(this.ActueelMainLabel);
+			this.ActueelTabPage.Controls.Add(this.WeerstationActueelLabel);
+			this.ActueelTabPage.Controls.Add(this.StendenLogoActueelPictureBox);
 			this.ActueelTabPage.Location = new System.Drawing.Point(4, 22);
 			this.ActueelTabPage.Name = "ActueelTabPage";
 			this.ActueelTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -89,41 +89,41 @@
 			this.ActueelTabPage.Text = "Actueel";
 			this.ActueelTabPage.UseVisualStyleBackColor = true;
 			// 
-			// label4
+			// ActueelMainLabel
 			// 
-			this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label4.Location = new System.Drawing.Point(50, 201);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(738, 326);
-			this.label4.TabIndex = 4;
+			this.ActueelMainLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.ActueelMainLabel.Location = new System.Drawing.Point(50, 201);
+			this.ActueelMainLabel.Name = "ActueelMainLabel";
+			this.ActueelMainLabel.Size = new System.Drawing.Size(738, 326);
+			this.ActueelMainLabel.TabIndex = 4;
 			// 
-			// label3
+			// WeerstationActueelLabel
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Gill Sans MT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(133)))));
-			this.label3.Location = new System.Drawing.Point(425, 112);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(275, 67);
-			this.label3.TabIndex = 3;
-			this.label3.Text = "Weerstation";
+			this.WeerstationActueelLabel.AutoSize = true;
+			this.WeerstationActueelLabel.Font = new System.Drawing.Font("Gill Sans MT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WeerstationActueelLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(133)))));
+			this.WeerstationActueelLabel.Location = new System.Drawing.Point(425, 112);
+			this.WeerstationActueelLabel.Name = "WeerstationActueelLabel";
+			this.WeerstationActueelLabel.Size = new System.Drawing.Size(275, 67);
+			this.WeerstationActueelLabel.TabIndex = 3;
+			this.WeerstationActueelLabel.Text = "Weerstation";
 			// 
-			// pictureBox3
+			// StendenLogoActueelPictureBox
 			// 
-			this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-			this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.pictureBox3.Location = new System.Drawing.Point(134, 25);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(205, 154);
-			this.pictureBox3.TabIndex = 2;
-			this.pictureBox3.TabStop = false;
+			this.StendenLogoActueelPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("StendenLogoActueelPictureBox.BackgroundImage")));
+			this.StendenLogoActueelPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.StendenLogoActueelPictureBox.Location = new System.Drawing.Point(134, 25);
+			this.StendenLogoActueelPictureBox.Name = "StendenLogoActueelPictureBox";
+			this.StendenLogoActueelPictureBox.Size = new System.Drawing.Size(205, 154);
+			this.StendenLogoActueelPictureBox.TabIndex = 2;
+			this.StendenLogoActueelPictureBox.TabStop = false;
 			// 
 			// TrendTabPage
 			// 
 			this.TrendTabPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TrendTabPage.BackgroundImage")));
-			this.TrendTabPage.Controls.Add(this.chart1);
-			this.TrendTabPage.Controls.Add(this.label2);
-			this.TrendTabPage.Controls.Add(this.pictureBox2);
+			this.TrendTabPage.Controls.Add(this.WeatherTrendChart);
+			this.TrendTabPage.Controls.Add(this.WeerstationTrendLabel);
+			this.TrendTabPage.Controls.Add(this.StendenLogoTrendPictureBox);
 			this.TrendTabPage.Location = new System.Drawing.Point(4, 22);
 			this.TrendTabPage.Name = "TrendTabPage";
 			this.TrendTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -132,26 +132,42 @@
 			this.TrendTabPage.Text = "Trend";
 			this.TrendTabPage.UseVisualStyleBackColor = true;
 			// 
-			// label2
+			// WeatherTrendChart
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Gill Sans MT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(133)))));
-			this.label2.Location = new System.Drawing.Point(425, 112);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(275, 67);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Weerstation";
+			chartArea1.Name = "ChartArea1";
+			this.WeatherTrendChart.ChartAreas.Add(chartArea1);
+			legend1.Name = "Legend1";
+			this.WeatherTrendChart.Legends.Add(legend1);
+			this.WeatherTrendChart.Location = new System.Drawing.Point(261, 223);
+			this.WeatherTrendChart.Name = "WeatherTrendChart";
+			series1.ChartArea = "ChartArea1";
+			series1.Legend = "Legend1";
+			series1.Name = "Series1";
+			this.WeatherTrendChart.Series.Add(series1);
+			this.WeatherTrendChart.Size = new System.Drawing.Size(300, 300);
+			this.WeatherTrendChart.TabIndex = 3;
+			this.WeatherTrendChart.Text = "chart1";
 			// 
-			// pictureBox2
+			// WeerstationTrendLabel
 			// 
-			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.pictureBox2.Location = new System.Drawing.Point(134, 25);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(205, 154);
-			this.pictureBox2.TabIndex = 1;
-			this.pictureBox2.TabStop = false;
+			this.WeerstationTrendLabel.AutoSize = true;
+			this.WeerstationTrendLabel.Font = new System.Drawing.Font("Gill Sans MT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WeerstationTrendLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(133)))));
+			this.WeerstationTrendLabel.Location = new System.Drawing.Point(425, 112);
+			this.WeerstationTrendLabel.Name = "WeerstationTrendLabel";
+			this.WeerstationTrendLabel.Size = new System.Drawing.Size(275, 67);
+			this.WeerstationTrendLabel.TabIndex = 2;
+			this.WeerstationTrendLabel.Text = "Weerstation";
+			// 
+			// StendenLogoTrendPictureBox
+			// 
+			this.StendenLogoTrendPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("StendenLogoTrendPictureBox.BackgroundImage")));
+			this.StendenLogoTrendPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.StendenLogoTrendPictureBox.Location = new System.Drawing.Point(134, 25);
+			this.StendenLogoTrendPictureBox.Name = "StendenLogoTrendPictureBox";
+			this.StendenLogoTrendPictureBox.Size = new System.Drawing.Size(205, 154);
+			this.StendenLogoTrendPictureBox.TabIndex = 1;
+			this.StendenLogoTrendPictureBox.TabStop = false;
 			// 
 			// OptiesTabPage
 			// 
@@ -161,13 +177,13 @@
 			this.OptiesTabPage.Controls.Add(this.FahrenheitRadioButton);
 			this.OptiesTabPage.Controls.Add(this.SecondenLabel);
 			this.OptiesTabPage.Controls.Add(this.IntervalTextBox);
-			this.OptiesTabPage.Controls.Add(this.PLaatsTextBox);
+			this.OptiesTabPage.Controls.Add(this.PlaatsTextBox);
 			this.OptiesTabPage.Controls.Add(this.WeergaveLabel);
 			this.OptiesTabPage.Controls.Add(this.IntervalLabel);
-			this.OptiesTabPage.Controls.Add(this.PLaatsLabel);
-			this.OptiesTabPage.Controls.Add(this.BoxLabel);
-			this.OptiesTabPage.Controls.Add(this.label1);
-			this.OptiesTabPage.Controls.Add(this.pictureBox1);
+			this.OptiesTabPage.Controls.Add(this.PlaatsLabel);
+			this.OptiesTabPage.Controls.Add(this.OptiesMainLabel);
+			this.OptiesTabPage.Controls.Add(this.WeerstationOptiesLabel);
+			this.OptiesTabPage.Controls.Add(this.StendenLogoOptiesPictureBox);
 			this.OptiesTabPage.Location = new System.Drawing.Point(4, 22);
 			this.OptiesTabPage.Name = "OptiesTabPage";
 			this.OptiesTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -176,13 +192,66 @@
 			this.OptiesTabPage.Text = "Opties";
 			this.OptiesTabPage.UseVisualStyleBackColor = true;
 			// 
-			// PLaatsTextBox
+			// SaveSettingsButton
 			// 
-			this.PLaatsTextBox.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PLaatsTextBox.Location = new System.Drawing.Point(363, 265);
-			this.PLaatsTextBox.Name = "PLaatsTextBox";
-			this.PLaatsTextBox.Size = new System.Drawing.Size(255, 33);
-			this.PLaatsTextBox.TabIndex = 6;
+			this.SaveSettingsButton.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SaveSettingsButton.Location = new System.Drawing.Point(611, 458);
+			this.SaveSettingsButton.Name = "SaveSettingsButton";
+			this.SaveSettingsButton.Size = new System.Drawing.Size(119, 43);
+			this.SaveSettingsButton.TabIndex = 11;
+			this.SaveSettingsButton.Text = "Toepassen";
+			this.SaveSettingsButton.UseVisualStyleBackColor = true;
+			this.SaveSettingsButton.Click += new System.EventHandler(this.SaveSettingsButton_Click);
+			// 
+			// CelciusRadioButton
+			// 
+			this.CelciusRadioButton.AutoSize = true;
+			this.CelciusRadioButton.Checked = true;
+			this.CelciusRadioButton.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.CelciusRadioButton.Location = new System.Drawing.Point(437, 429);
+			this.CelciusRadioButton.Name = "CelciusRadioButton";
+			this.CelciusRadioButton.Size = new System.Drawing.Size(48, 30);
+			this.CelciusRadioButton.TabIndex = 10;
+			this.CelciusRadioButton.TabStop = true;
+			this.CelciusRadioButton.Text = "°C";
+			this.CelciusRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// FahrenheitRadioButton
+			// 
+			this.FahrenheitRadioButton.AutoSize = true;
+			this.FahrenheitRadioButton.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FahrenheitRadioButton.Location = new System.Drawing.Point(363, 429);
+			this.FahrenheitRadioButton.Name = "FahrenheitRadioButton";
+			this.FahrenheitRadioButton.Size = new System.Drawing.Size(47, 30);
+			this.FahrenheitRadioButton.TabIndex = 9;
+			this.FahrenheitRadioButton.Text = "°F";
+			this.FahrenheitRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// SecondenLabel
+			// 
+			this.SecondenLabel.AutoSize = true;
+			this.SecondenLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SecondenLabel.Location = new System.Drawing.Point(463, 354);
+			this.SecondenLabel.Name = "SecondenLabel";
+			this.SecondenLabel.Size = new System.Drawing.Size(93, 18);
+			this.SecondenLabel.TabIndex = 8;
+			this.SecondenLabel.Text = "(in seconden)";
+			// 
+			// IntervalTextBox
+			// 
+			this.IntervalTextBox.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.IntervalTextBox.Location = new System.Drawing.Point(363, 345);
+			this.IntervalTextBox.Name = "IntervalTextBox";
+			this.IntervalTextBox.Size = new System.Drawing.Size(67, 33);
+			this.IntervalTextBox.TabIndex = 7;
+			// 
+			// PlaatsTextBox
+			// 
+			this.PlaatsTextBox.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.PlaatsTextBox.Location = new System.Drawing.Point(363, 265);
+			this.PlaatsTextBox.Name = "PlaatsTextBox";
+			this.PlaatsTextBox.Size = new System.Drawing.Size(255, 33);
+			this.PlaatsTextBox.TabIndex = 6;
 			// 
 			// WeergaveLabel
 			// 
@@ -204,112 +273,44 @@
 			this.IntervalLabel.TabIndex = 4;
 			this.IntervalLabel.Text = "Interval";
 			// 
-			// PLaatsLabel
+			// PlaatsLabel
 			// 
-			this.PLaatsLabel.AutoSize = true;
-			this.PLaatsLabel.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PLaatsLabel.Location = new System.Drawing.Point(212, 265);
-			this.PLaatsLabel.Name = "PLaatsLabel";
-			this.PLaatsLabel.Size = new System.Drawing.Size(63, 26);
-			this.PLaatsLabel.TabIndex = 3;
-			this.PLaatsLabel.Text = "Plaats";
+			this.PlaatsLabel.AutoSize = true;
+			this.PlaatsLabel.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.PlaatsLabel.Location = new System.Drawing.Point(212, 265);
+			this.PlaatsLabel.Name = "PlaatsLabel";
+			this.PlaatsLabel.Size = new System.Drawing.Size(63, 26);
+			this.PlaatsLabel.TabIndex = 3;
+			this.PlaatsLabel.Text = "Plaats";
 			// 
-			// BoxLabel
+			// OptiesMainLabel
 			// 
-			this.BoxLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.BoxLabel.Location = new System.Drawing.Point(50, 201);
-			this.BoxLabel.Name = "BoxLabel";
-			this.BoxLabel.Size = new System.Drawing.Size(738, 326);
-			this.BoxLabel.TabIndex = 2;
+			this.OptiesMainLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.OptiesMainLabel.Location = new System.Drawing.Point(50, 201);
+			this.OptiesMainLabel.Name = "OptiesMainLabel";
+			this.OptiesMainLabel.Size = new System.Drawing.Size(738, 326);
+			this.OptiesMainLabel.TabIndex = 2;
 			// 
-			// label1
+			// WeerstationOptiesLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Gill Sans MT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(133)))));
-			this.label1.Location = new System.Drawing.Point(425, 112);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(275, 67);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Weerstation";
+			this.WeerstationOptiesLabel.AutoSize = true;
+			this.WeerstationOptiesLabel.Font = new System.Drawing.Font("Gill Sans MT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WeerstationOptiesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(133)))));
+			this.WeerstationOptiesLabel.Location = new System.Drawing.Point(425, 112);
+			this.WeerstationOptiesLabel.Name = "WeerstationOptiesLabel";
+			this.WeerstationOptiesLabel.Size = new System.Drawing.Size(275, 67);
+			this.WeerstationOptiesLabel.TabIndex = 1;
+			this.WeerstationOptiesLabel.Text = "Weerstation";
 			// 
-			// pictureBox1
+			// StendenLogoOptiesPictureBox
 			// 
-			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.pictureBox1.Location = new System.Drawing.Point(134, 25);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(205, 154);
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
-			// 
-			// IntervalTextBox
-			// 
-			this.IntervalTextBox.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.IntervalTextBox.Location = new System.Drawing.Point(363, 345);
-			this.IntervalTextBox.Name = "IntervalTextBox";
-			this.IntervalTextBox.Size = new System.Drawing.Size(67, 33);
-			this.IntervalTextBox.TabIndex = 7;
-			// 
-			// SecondenLabel
-			// 
-			this.SecondenLabel.AutoSize = true;
-			this.SecondenLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SecondenLabel.Location = new System.Drawing.Point(463, 354);
-			this.SecondenLabel.Name = "SecondenLabel";
-			this.SecondenLabel.Size = new System.Drawing.Size(93, 18);
-			this.SecondenLabel.TabIndex = 8;
-			this.SecondenLabel.Text = "(in seconden)";
-			// 
-			// FahrenheitRadioButton
-			// 
-			this.FahrenheitRadioButton.AutoSize = true;
-			this.FahrenheitRadioButton.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FahrenheitRadioButton.Location = new System.Drawing.Point(363, 429);
-			this.FahrenheitRadioButton.Name = "FahrenheitRadioButton";
-			this.FahrenheitRadioButton.Size = new System.Drawing.Size(47, 30);
-			this.FahrenheitRadioButton.TabIndex = 9;
-			this.FahrenheitRadioButton.TabStop = true;
-			this.FahrenheitRadioButton.Text = "°F";
-			this.FahrenheitRadioButton.UseVisualStyleBackColor = true;
-			// 
-			// CelciusRadioButton
-			// 
-			this.CelciusRadioButton.AutoSize = true;
-			this.CelciusRadioButton.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.CelciusRadioButton.Location = new System.Drawing.Point(437, 429);
-			this.CelciusRadioButton.Name = "CelciusRadioButton";
-			this.CelciusRadioButton.Size = new System.Drawing.Size(48, 30);
-			this.CelciusRadioButton.TabIndex = 10;
-			this.CelciusRadioButton.TabStop = true;
-			this.CelciusRadioButton.Text = "°C";
-			this.CelciusRadioButton.UseVisualStyleBackColor = true;
-			// 
-			// SaveSettingsButton
-			// 
-			this.SaveSettingsButton.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SaveSettingsButton.Location = new System.Drawing.Point(611, 458);
-			this.SaveSettingsButton.Name = "SaveSettingsButton";
-			this.SaveSettingsButton.Size = new System.Drawing.Size(119, 43);
-			this.SaveSettingsButton.TabIndex = 11;
-			this.SaveSettingsButton.Text = "Toepassen";
-			this.SaveSettingsButton.UseVisualStyleBackColor = true;
-			// 
-			// chart1
-			// 
-			chartArea1.Name = "ChartArea1";
-			this.chart1.ChartAreas.Add(chartArea1);
-			legend1.Name = "Legend1";
-			this.chart1.Legends.Add(legend1);
-			this.chart1.Location = new System.Drawing.Point(261, 223);
-			this.chart1.Name = "chart1";
-			series1.ChartArea = "ChartArea1";
-			series1.Legend = "Legend1";
-			series1.Name = "Series1";
-			this.chart1.Series.Add(series1);
-			this.chart1.Size = new System.Drawing.Size(300, 300);
-			this.chart1.TabIndex = 3;
-			this.chart1.Text = "chart1";
+			this.StendenLogoOptiesPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("StendenLogoOptiesPictureBox.BackgroundImage")));
+			this.StendenLogoOptiesPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.StendenLogoOptiesPictureBox.Location = new System.Drawing.Point(134, 25);
+			this.StendenLogoOptiesPictureBox.Name = "StendenLogoOptiesPictureBox";
+			this.StendenLogoOptiesPictureBox.Size = new System.Drawing.Size(205, 154);
+			this.StendenLogoOptiesPictureBox.TabIndex = 0;
+			this.StendenLogoOptiesPictureBox.TabStop = false;
 			// 
 			// Weerstation
 			// 
@@ -322,17 +323,18 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "Weerstation";
 			this.Text = "Stenden Weerstation";
+			this.Load += new System.EventHandler(this.Weerstation_Load);
 			this.MainTabControl.ResumeLayout(false);
 			this.ActueelTabPage.ResumeLayout(false);
 			this.ActueelTabPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.StendenLogoActueelPictureBox)).EndInit();
 			this.TrendTabPage.ResumeLayout(false);
 			this.TrendTabPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.WeatherTrendChart)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.StendenLogoTrendPictureBox)).EndInit();
 			this.OptiesTabPage.ResumeLayout(false);
 			this.OptiesTabPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.StendenLogoOptiesPictureBox)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -341,26 +343,26 @@
 
 		private System.Windows.Forms.TabControl MainTabControl;
 		private System.Windows.Forms.TabPage ActueelTabPage;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.Label WeerstationActueelLabel;
+		private System.Windows.Forms.PictureBox StendenLogoActueelPictureBox;
 		private System.Windows.Forms.TabPage TrendTabPage;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.Label WeerstationTrendLabel;
+		private System.Windows.Forms.PictureBox StendenLogoTrendPictureBox;
 		private System.Windows.Forms.TabPage OptiesTabPage;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label BoxLabel;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox PLaatsTextBox;
+		private System.Windows.Forms.Label WeerstationOptiesLabel;
+		private System.Windows.Forms.PictureBox StendenLogoOptiesPictureBox;
+		private System.Windows.Forms.Label OptiesMainLabel;
+		private System.Windows.Forms.Label ActueelMainLabel;
+		private System.Windows.Forms.TextBox PlaatsTextBox;
 		private System.Windows.Forms.Label WeergaveLabel;
 		private System.Windows.Forms.Label IntervalLabel;
-		private System.Windows.Forms.Label PLaatsLabel;
+		private System.Windows.Forms.Label PlaatsLabel;
 		private System.Windows.Forms.TextBox IntervalTextBox;
 		private System.Windows.Forms.Label SecondenLabel;
 		private System.Windows.Forms.RadioButton CelciusRadioButton;
 		private System.Windows.Forms.RadioButton FahrenheitRadioButton;
 		private System.Windows.Forms.Button SaveSettingsButton;
-		private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+		private System.Windows.Forms.DataVisualization.Charting.Chart WeatherTrendChart;
 	}
 }
 

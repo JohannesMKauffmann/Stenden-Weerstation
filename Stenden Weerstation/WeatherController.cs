@@ -10,6 +10,7 @@ namespace Stenden_Weerstation
 	class WeatherController
 	{
 		public const string APIKEY = "0a03d77b213b8ea8fff7162343e65639";
-		public const int CITYID = 2756136;
+
+		
 	}
 }
