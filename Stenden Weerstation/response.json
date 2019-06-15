@@ -1,0 +1,41 @@
+{
+	"coord": {
+		"lon": 6.91,
+		"lat": 52.78
+	},
+	"weather": [
+		{
+			"id": 802,
+			"main": "Clouds",
+			"description": "half bewolkt",
+			"icon": "03d"
+		}
+	],
+	"base": "stations",
+	"main": {
+		"temp": 19.01,
+		"pressure": 1014,
+		"humidity": 68,
+		"temp_min": 17.22,
+		"temp_max": 21.11
+	},
+	"visibility": 10000,
+	"wind": {
+		"speed": 4.1,
+		"deg": 270
+	},
+	"clouds": { "all": 40 },
+	"dt": 1560619623,
+	"sys": {
+		"type": 1,
+		"id": 1530,
+		"message": 0.0079,
+		"country": "NL",
+		"sunrise": 1560568041,
+		"sunset": 1560628697
+	},
+	"timezone": 7200,
+	"id": 2756136,
+	"name": "Emmen",
+	"cod": 200
+}

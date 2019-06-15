@@ -1,16 +1,20 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Stenden_Weerstation
 {
 	class WeatherController
 	{
 		public const string APIKEY = "0a03d77b213b8ea8fff7162343e65639";
+
+		Forecast forecast;
 
 		private static readonly HttpClient client = new HttpClient();
 
@@ -33,7 +37,7 @@ namespace Stenden_Weerstation
 			{
 				string url = GetRequestUrl(CityId, metricSystem, language);
 				string responseBody = await client.GetStringAsync(url);
-				WriteWeatherToDatabase(responseBody);
+				parseForecastResponse(responseBody);
 			}
 			catch (HttpRequestException ex)
 			{
@@ -41,9 +45,22 @@ namespace Stenden_Weerstation
 			}
 		}
 
-		public void WriteWeatherToDatabase(string responseBody)
+		public void parseForecastResponse(string responseBody)
 		{
 			//MessageBox.Show(responseBody);
+			using (JsonTextReader reader = new JsonTextReader(new StringReader(responseBody)))
+			{
+				JsonSerializer serializer = new JsonSerializer();
+				forecast = (Forecast) serializer.Deserialize(reader, typeof(Forecast));
+				Weather w = forecast.weather.First();
+				Main m = forecast.main;
+				//MessageBox.Show(w.description + ", " + m.humidity);
+			}
+		}
+
+		public void writeForecastToDatabase()
+		{
+
 		}
 	}
 }

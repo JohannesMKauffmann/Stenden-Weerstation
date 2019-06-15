@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,7 +72,7 @@ namespace Stenden_Weerstation
 				{
 					JsonSerializer serializer = new JsonSerializer();
 					List<Plaats> plaatsenLijst = (List<Plaats>) serializer.Deserialize(file, typeof(List<Plaats>));
-					//TODO: dropdown met input, lijst van plaatsnaam + land
+					//TODO: dropdown met input, alle mogelijkheden, lijst van plaatsnaam + land
 					//Dictionary<int, string> matches = new Dictionary<int, string>();
 					bool found = false;
 					int index = 0;
