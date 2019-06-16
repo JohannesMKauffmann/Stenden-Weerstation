@@ -20,7 +20,6 @@ namespace Stenden_Weerstation
 		public Wind wind { get; set; }
 		public int dt { get; set; }
 		public int id { get; set; }
-		public string name { get; set; }
 	}
 
 	class Weather
@@ -31,14 +30,13 @@ namespace Stenden_Weerstation
 
 	class Main
 	{
-		public decimal temp { get; set; }
-		public int pressure { get; set; }
+		public double temp { get; set; }
 		public int humidity { get; set; }
 	}
 
 	class Wind
 	{
-		public decimal speed { get; set; }
-		public int deg { get; set; }
+		public double speed { get; set; }
+		public double deg { get; set; }
 	}
 }
