@@ -129,7 +129,7 @@ namespace Stenden_Weerstation
 					{
 						command.CommandType = CommandType.StoredProcedure;
 						command.CommandText = "GetForecastByCityIdAndDateTime";
-
+						
 						//Add input parameters
 						command.Parameters.AddWithValue("@City_Id", City_Id);
 						command.Parameters.AddWithValue("@MaxDatetime", MaxDatetime);
@@ -138,46 +138,50 @@ namespace Stenden_Weerstation
 						command.Parameters.AddWithValue("@Weather_Desc", null);
 						command.Parameters[ "@Weather_Desc" ].DbType = DbType.String;
 						command.Parameters[ "@Weather_Desc" ].Direction = ParameterDirection.Output;
+						command.Parameters[ "@Weather_Desc" ].Size = 30;
 
-						//command.Parameters.AddWithValue("@Weather_Icon", null);
-						//command.Parameters[ "@Weather_Icon" ].DbType = DbType.String;
-						//command.Parameters[ "@Weather_Icon" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@Weather_Icon", null);
+						command.Parameters[ "@Weather_Icon" ].DbType = DbType.String;
+						command.Parameters[ "@Weather_Icon" ].Direction = ParameterDirection.Output;
+						command.Parameters[ "@Weather_Icon" ].Size = 3;
 
-						//command.Parameters.AddWithValue("@Datetime", null);
-						//command.Parameters[ "@Datetime" ].DbType = DbType.Int32;
-						//command.Parameters[ "@Datetime" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@Datetime", null);
+						command.Parameters[ "@Datetime" ].DbType = DbType.Int32;
+						command.Parameters[ "@Datetime" ].Direction = ParameterDirection.Output;
 
-						//command.Parameters.AddWithValue("@Temp", null);
-						//command.Parameters[ "@Temp" ].DbType = DbType.Double;
-						//command.Parameters[ "@Temp" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@Temp", null);
+						command.Parameters[ "@Temp" ].DbType = DbType.Double;
+						command.Parameters[ "@Temp" ].Direction = ParameterDirection.Output;
 
-						//command.Parameters.AddWithValue("@Humidity", null);
-						//command.Parameters[ "@Humidity" ].DbType = DbType.Int32;
-						//command.Parameters[ "@Humidity" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@Humidity", null);
+						command.Parameters[ "@Humidity" ].DbType = DbType.Int32;
+						command.Parameters[ "@Humidity" ].Direction = ParameterDirection.Output;
 
-						//command.Parameters.AddWithValue("@Wind_Speed", null);
-						//command.Parameters[ "@Wind_Speed" ].DbType = DbType.Double;
-						//command.Parameters[ "@Wind_Speed" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@Wind_Speed", null);
+						command.Parameters[ "@Wind_Speed" ].DbType = DbType.Double;
+						command.Parameters[ "@Wind_Speed" ].Direction = ParameterDirection.Output;
 
-						//command.Parameters.AddWithValue("@Wind_Deg", null);
-						//command.Parameters[ "@Wind_Deg" ].DbType = DbType.Double;
-						//command.Parameters[ "@Wind_Deg" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@Wind_Deg", null);
+						command.Parameters[ "@Wind_Deg" ].DbType = DbType.Double;
+						command.Parameters[ "@Wind_Deg" ].Direction = ParameterDirection.Output;
 
 						connection.Open();
 						command.ExecuteNonQuery();
 
-						MessageBox.Show(command.Parameters[ "@Weather_Desc" ].Value.ToString());
-						MessageBox.Show(command.Parameters[ "@Weather_Icon" ].Value.ToString());
-						MessageBox.Show(command.Parameters[ "@Datetime" ].Value.ToString());
-						MessageBox.Show(command.Parameters[ "@Temp" ].Value.ToString());
-						MessageBox.Show(command.Parameters[ "@Humidity" ].Value.ToString());
-						MessageBox.Show(command.Parameters[ "@Wind_Speed" ].Value.ToString());
-						MessageBox.Show(command.Parameters[ "@Wind_Deg" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Weather_Desc" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Weather_Icon" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Datetime" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Temp" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Humidity" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Wind_Speed" ].Value.ToString());
+						//MessageBox.Show(command.Parameters[ "@Wind_Deg" ].Value.ToString());
 
-						forecast.weather.Add(new Weather {
-							description = command.Parameters[ "@Weather_Desc" ].Value.ToString(),
-							icon = command.Parameters[ "@Weather_Icon" ].Value.ToString()
-						});
+						forecast.weather = new List<Weather> {
+							new Weather {
+								description = command.Parameters[ "@Weather_Desc" ].Value.ToString(),
+								icon = command.Parameters[ "@Weather_Icon" ].Value.ToString()
+							}
+						};
 						forecast.dt = Int32.Parse(command.Parameters[ "@Datetime" ].Value.ToString());
 						forecast.main = new Main {
 							temp = Double.Parse(command.Parameters[ "@Temp" ].Value.ToString()),

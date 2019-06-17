@@ -82,11 +82,11 @@ namespace Stenden_Weerstation
 			string TemperatureString = "Temperature: ";
 			if (MetricSystem)
 			{
-				TemperatureString += Math.Round(temp - 273, 2).ToString() + " °C";
+				TemperatureString += Math.Round(temp - 273, 1).ToString() + " °C";
 			}
 			else
 			{
-				TemperatureString += Math.Round(((temp - 273 * 9) / 5) + 32, 2).ToString() + " °F";
+				TemperatureString += Math.Round(((temp - 273 * 9) / 5) + 32, 1).ToString() + " °F";
 			}
 			return TemperatureString;
 		}
@@ -134,7 +134,7 @@ namespace Stenden_Weerstation
 			}
 			if (MetricSystem)
 			{
-				WindString += " met " + Math.Round(speed * 3.6, 1).ToString() + " mk/h";
+				WindString += " met " + Math.Round(speed * 3.6, 1).ToString() + " km/h";
 			}
 			else
 			{
