@@ -23,6 +23,7 @@ namespace Stenden_Weerstation
 		private bool MetricSystem { get; set; }
 		private int City_Id { get; set; }
 		public string Language { get; set; }
+		public int MaxDatetime { get; set; }
 
 		private const int DefaultCityId = 2756136;
 		private const string DefaultLocation = "Emmen";
@@ -41,11 +42,21 @@ namespace Stenden_Weerstation
 
 		private void Weerstation_Load(object sender, EventArgs e)
 		{
-			if(!WController.SendWeatherRequest(City_Id, Language))
-			{
-				UpdateForm(WController.GetLatestForecastFromDatabase(City_Id));
-			}
+			WController.SendWeatherRequest(City_Id, Language);
 
+			// get latest forecast from DB, indepent of connection
+			// if request was succesfull, latest forecast is already written to DB
+			MaxDatetime = WController.GetMaxDatetimeFromDatabase();
+			Forecast forecast = WController.GetLatestForecastFromDatabase(City_Id, MaxDatetime);
+			try
+			{
+				UpdateForm(forecast);
+			}
+			catch (ArgumentNullException)
+			{
+				MessageBox.Show("Er is iets mis gegaan :<(");
+			}
+			
 			//////////////////////////////////////////////////////
 			//WController.GetDataFromDb += GetLatestForecast;   //
 			//UpdateForm(GetLatestForecast(City_Id));           //
