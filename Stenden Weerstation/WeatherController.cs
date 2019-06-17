@@ -136,32 +136,32 @@ namespace Stenden_Weerstation
 
 						//Add output parameters
 						command.Parameters.AddWithValue("@Weather_Desc", null);
-						command.Parameters[ "@Weather_Desc" ].DbType = DbType.Int32;
+						command.Parameters[ "@Weather_Desc" ].DbType = DbType.String;
 						command.Parameters[ "@Weather_Desc" ].Direction = ParameterDirection.Output;
 
-						command.Parameters.AddWithValue("@Weather_Icon", null);
-						command.Parameters[ "@Weather_Icon" ].DbType = DbType.String;
-						command.Parameters[ "@Weather_Icon" ].Direction = ParameterDirection.Output;
+						//command.Parameters.AddWithValue("@Weather_Icon", null);
+						//command.Parameters[ "@Weather_Icon" ].DbType = DbType.String;
+						//command.Parameters[ "@Weather_Icon" ].Direction = ParameterDirection.Output;
 
-						command.Parameters.AddWithValue("@Datetime", null);
-						command.Parameters[ "@Datetime" ].DbType = DbType.Int32;
-						command.Parameters[ "@Datetime" ].Direction = ParameterDirection.Output;
+						//command.Parameters.AddWithValue("@Datetime", null);
+						//command.Parameters[ "@Datetime" ].DbType = DbType.Int32;
+						//command.Parameters[ "@Datetime" ].Direction = ParameterDirection.Output;
 
-						command.Parameters.AddWithValue("@Temp", null);
-						command.Parameters[ "@Temp" ].DbType = DbType.Decimal;
-						command.Parameters[ "@Temp" ].Direction = ParameterDirection.Output;
+						//command.Parameters.AddWithValue("@Temp", null);
+						//command.Parameters[ "@Temp" ].DbType = DbType.Double;
+						//command.Parameters[ "@Temp" ].Direction = ParameterDirection.Output;
 
-						command.Parameters.AddWithValue("@Humidity", null);
-						command.Parameters[ "@Humidity" ].DbType = DbType.Int32;
-						command.Parameters[ "@Humidity" ].Direction = ParameterDirection.Output;
+						//command.Parameters.AddWithValue("@Humidity", null);
+						//command.Parameters[ "@Humidity" ].DbType = DbType.Int32;
+						//command.Parameters[ "@Humidity" ].Direction = ParameterDirection.Output;
 
-						command.Parameters.AddWithValue("@Wind_Speed", null);
-						command.Parameters[ "@Wind_Speed" ].DbType = DbType.Decimal;
-						command.Parameters[ "@Wind_Speed" ].Direction = ParameterDirection.Output;
+						//command.Parameters.AddWithValue("@Wind_Speed", null);
+						//command.Parameters[ "@Wind_Speed" ].DbType = DbType.Double;
+						//command.Parameters[ "@Wind_Speed" ].Direction = ParameterDirection.Output;
 
-						command.Parameters.AddWithValue("@Wind_Deg", null);
-						command.Parameters[ "@Wind_Deg" ].DbType = DbType.Decimal;
-						command.Parameters[ "@Wind_Deg" ].Direction = ParameterDirection.Output;
+						//command.Parameters.AddWithValue("@Wind_Deg", null);
+						//command.Parameters[ "@Wind_Deg" ].DbType = DbType.Double;
+						//command.Parameters[ "@Wind_Deg" ].Direction = ParameterDirection.Output;
 
 						connection.Open();
 						command.ExecuteNonQuery();
