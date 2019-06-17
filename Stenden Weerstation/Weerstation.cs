@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
@@ -23,50 +24,52 @@ namespace Stenden_Weerstation
 		private bool MetricSystem { get; set; }
 		private int City_Id { get; set; }
 		public string Language { get; set; }
-		public int MaxDatetime { get; set; }
 
 		private const int DefaultCityId = 2756136;
 		private const string DefaultLocation = "Emmen";
 
 		public Weerstation()
 		{
+			Thread T = new Thread(new ThreadStart(StartSplashScreen));
+			T.Start();
+			Thread.Sleep(2000);
 			InitializeComponent();
+			T.Abort();
+
 			WController = new WeatherController();
-			TController = new TrendController();
-			MetricSystem = false;
 			City_Id = DefaultCityId;
 			Location = DefaultLocation;
 			MetricSystem = true;
 			Language = CultureInfo.CurrentCulture.ToString().Substring(3);
 		}
 
+		public void StartSplashScreen()
+		{
+			Application.Run(new SplashScreen());
+		}
+
 		private void Weerstation_Load(object sender, EventArgs e)
+		{
+			UpdateApiAndForm();
+		}
+
+		private void UpdateApiAndForm()
 		{
 			WController.SendWeatherRequest(City_Id, Language);
 
 			// get latest forecast from DB, indepent of connection
 			// if request was succesfull, latest forecast is already written to DB
-			MaxDatetime = WController.GetMaxDatetimeFromDatabase();
-			Forecast forecast = WController.GetLatestForecastFromDatabase(City_Id, MaxDatetime);
+			int MaxPK = WController.GetMaxPKFromDatabase();
+			WController.GetLatestForecastFromDatabase(City_Id, MaxPK);
 			try
 			{
-				UpdateForm(forecast);
+				UpdateForm(WController.forecast);
 			}
 			catch (ArgumentNullException)
 			{
 				MessageBox.Show("Er is iets mis gegaan :<(");
 			}
-			
-			//////////////////////////////////////////////////////
-			//WController.GetDataFromDb += GetLatestForecast;   //
-			//UpdateForm(GetLatestForecast(City_Id));           //
-			//////////////////////////////////////////////////////
 		}
-
-		//private Forecast GetLatestForecast(int City_Id)
-		//{
-		//	return WController.GetLatestForecastFromDatabase(City_Id);
-		//}
 
 		private void UpdateForm(Forecast forecast)
 		{
@@ -75,6 +78,9 @@ namespace Stenden_Weerstation
 			TemperatuurLabel.Text = BuildTemperatureString(forecast.main.temp);
 			LuchtvochtigheidLabel.Text = BuildHumidityString(forecast.main.humidity);
 			WindLabel.Text = BuildWindString(forecast.wind.speed, forecast.wind.deg);
+			DateTime LatestUpdate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			LatestUpdate = LatestUpdate.AddSeconds(forecast.dt);
+			LatestUpdateLabel.Text = "[Laatste update: " + LatestUpdate.ToLocalTime().ToString() + "]";
 		}
 
 		private string BuildTemperatureString(double temp)
@@ -153,6 +159,10 @@ namespace Stenden_Weerstation
 				{
 					City_Id = GetIdByPlaatsnaam(PlaatsTextBox.Text).First().Key;
 					Location = PlaatsTextBox.Text;
+					if (WController.forecast != null)
+					{
+						UpdateForm(WController.forecast);
+					}
 					MessageBox.Show("De instellingen zijn succesvol toegepast.");
 				}
 				else
@@ -202,6 +212,5 @@ namespace Stenden_Weerstation
 			}
 			return Matches;
 		}
-
 	}
 }

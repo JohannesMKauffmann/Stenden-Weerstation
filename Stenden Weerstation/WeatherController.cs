@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net.Http;
 using System.Net;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,11 +15,8 @@ namespace Stenden_Weerstation
 	class WeatherController
 	{
 		private const string APIKEY = "0a03d77b213b8ea8fff7162343e65639";
-		//private static readonly HttpClient client = new HttpClient();
 
-		//public delegate Forecast MyDel(int City_Id);
-
-		//public event MyDel GetDataFromDb;
+		public Forecast forecast;
 
 		public string BuildRequestUrl(int CityId, string language)
 		{
@@ -35,7 +31,6 @@ namespace Stenden_Weerstation
 			try
 			{
 				string url = BuildRequestUrl(City_Id, language);
-				//string responseBody = await client.GetStringAsync(url);
 				WebClient client = new WebClient();
 				string responseBody = client.DownloadString(url);
 				ParseForecastResponse(responseBody);
@@ -86,9 +81,9 @@ namespace Stenden_Weerstation
 			}
 		}
 
-		public int GetMaxDatetimeFromDatabase()
+		public int GetMaxPKFromDatabase()
 		{
-			int MaxDatetime = -1;
+			int MaxPK = -1;
 			try
 			{
 				string connectionString = "Data Source=.;Initial Catalog=StendenWeerstation;Integrated Security=True";
@@ -97,16 +92,16 @@ namespace Stenden_Weerstation
 					using (SqlCommand command = connection.CreateCommand())
 					{
 						command.CommandType = CommandType.StoredProcedure;
-						command.CommandText = "GetMaxDatetime";
+						command.CommandText = "GetMaxPK";
 
-						command.Parameters.AddWithValue("@MaxDatetime", null);
-						command.Parameters[ "@MaxDatetime" ].DbType = DbType.Int32;
-						command.Parameters[ "@MaxDatetime" ].Direction = ParameterDirection.Output;
+						command.Parameters.AddWithValue("@MaxPK", null);
+						command.Parameters[ "@MaxPK" ].DbType = DbType.Int32;
+						command.Parameters[ "@MaxPK" ].Direction = ParameterDirection.Output;
 
 						connection.Open();
 						command.ExecuteNonQuery();
 
-						MaxDatetime = Int32.Parse(command.Parameters[ "@MaxDatetime" ].Value.ToString());
+						MaxPK = Int32.Parse(command.Parameters[ "@MaxPK" ].Value.ToString());
 					}
 				}
 			}
@@ -114,12 +109,11 @@ namespace Stenden_Weerstation
 			{
 				MessageBox.Show(ex.Message);
 			}
-			return MaxDatetime;
+			return MaxPK;
 		}
 
-		public Forecast GetLatestForecastFromDatabase(int City_Id, int MaxDatetime)
+		public void GetLatestForecastFromDatabase(int City_Id, int MaxPK)
 		{
-			Forecast forecast = new Forecast();
 			try
 			{
 				string connectionString = "Data Source=.;Initial Catalog=StendenWeerstation;Integrated Security=True";
@@ -128,11 +122,11 @@ namespace Stenden_Weerstation
 					using (SqlCommand command = connection.CreateCommand())
 					{
 						command.CommandType = CommandType.StoredProcedure;
-						command.CommandText = "GetForecastByCityIdAndDateTime";
+						command.CommandText = "GetForecastByCityIdAndPK";
 						
 						//Add input parameters
 						command.Parameters.AddWithValue("@City_Id", City_Id);
-						command.Parameters.AddWithValue("@MaxDatetime", MaxDatetime);
+						command.Parameters.AddWithValue("@MaxPK", MaxPK);
 
 						//Add output parameters
 						command.Parameters.AddWithValue("@Weather_Desc", null);
@@ -168,13 +162,7 @@ namespace Stenden_Weerstation
 						connection.Open();
 						command.ExecuteNonQuery();
 
-						//MessageBox.Show(command.Parameters[ "@Weather_Desc" ].Value.ToString());
-						//MessageBox.Show(command.Parameters[ "@Weather_Icon" ].Value.ToString());
-						//MessageBox.Show(command.Parameters[ "@Datetime" ].Value.ToString());
-						//MessageBox.Show(command.Parameters[ "@Temp" ].Value.ToString());
-						//MessageBox.Show(command.Parameters[ "@Humidity" ].Value.ToString());
-						//MessageBox.Show(command.Parameters[ "@Wind_Speed" ].Value.ToString());
-						//MessageBox.Show(command.Parameters[ "@Wind_Deg" ].Value.ToString());
+						forecast = new Forecast();
 
 						forecast.weather = new List<Weather> {
 							new Weather {
@@ -198,7 +186,6 @@ namespace Stenden_Weerstation
 			{
 				MessageBox.Show(ex.Message);
 			}
-			return forecast;
 		}
 	}
 }

@@ -28,10 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Weerstation));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.MainTabControl = new System.Windows.Forms.TabControl();
 			this.ActueelTabPage = new System.Windows.Forms.TabPage();
 			this.WeatherIconPictureBox = new System.Windows.Forms.PictureBox();
@@ -61,6 +62,8 @@
 			this.OptiesMainLabel = new System.Windows.Forms.Label();
 			this.WeerstationOptiesLabel = new System.Windows.Forms.Label();
 			this.StendenLogoOptiesPictureBox = new System.Windows.Forms.PictureBox();
+			this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.MainTabControl.SuspendLayout();
 			this.ActueelTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WeatherIconPictureBox)).BeginInit();
@@ -106,7 +109,7 @@
 			// 
 			// WeatherIconPictureBox
 			// 
-			this.WeatherIconPictureBox.Location = new System.Drawing.Point(88, 391);
+			this.WeatherIconPictureBox.Location = new System.Drawing.Point(100, 391);
 			this.WeatherIconPictureBox.Name = "WeatherIconPictureBox";
 			this.WeatherIconPictureBox.Size = new System.Drawing.Size(122, 78);
 			this.WeatherIconPictureBox.TabIndex = 11;
@@ -116,7 +119,7 @@
 			// 
 			this.DescriptionLabel.AutoSize = true;
 			this.DescriptionLabel.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.DescriptionLabel.Location = new System.Drawing.Point(82, 329);
+			this.DescriptionLabel.Location = new System.Drawing.Point(95, 329);
 			this.DescriptionLabel.Name = "DescriptionLabel";
 			this.DescriptionLabel.Size = new System.Drawing.Size(140, 26);
 			this.DescriptionLabel.TabIndex = 10;
@@ -126,7 +129,7 @@
 			// 
 			this.LocationLabel.AutoSize = true;
 			this.LocationLabel.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.LocationLabel.Location = new System.Drawing.Point(82, 264);
+			this.LocationLabel.Location = new System.Drawing.Point(94, 264);
 			this.LocationLabel.Name = "LocationLabel";
 			this.LocationLabel.Size = new System.Drawing.Size(100, 33);
 			this.LocationLabel.TabIndex = 9;
@@ -217,16 +220,16 @@
 			// 
 			// WeatherTrendChart
 			// 
-			chartArea1.Name = "ChartArea1";
-			this.WeatherTrendChart.ChartAreas.Add(chartArea1);
-			legend1.Name = "Legend1";
-			this.WeatherTrendChart.Legends.Add(legend1);
+			chartArea2.Name = "ChartArea1";
+			this.WeatherTrendChart.ChartAreas.Add(chartArea2);
+			legend2.Name = "Legend1";
+			this.WeatherTrendChart.Legends.Add(legend2);
 			this.WeatherTrendChart.Location = new System.Drawing.Point(261, 223);
 			this.WeatherTrendChart.Name = "WeatherTrendChart";
-			series1.ChartArea = "ChartArea1";
-			series1.Legend = "Legend1";
-			series1.Name = "Series1";
-			this.WeatherTrendChart.Series.Add(series1);
+			series2.ChartArea = "ChartArea1";
+			series2.Legend = "Legend1";
+			series2.Name = "Series1";
+			this.WeatherTrendChart.Series.Add(series2);
 			this.WeatherTrendChart.Size = new System.Drawing.Size(300, 300);
 			this.WeatherTrendChart.TabIndex = 3;
 			this.WeatherTrendChart.Text = "chart1";
@@ -395,6 +398,16 @@
 			this.StendenLogoOptiesPictureBox.TabIndex = 0;
 			this.StendenLogoOptiesPictureBox.TabStop = false;
 			// 
+			// ContextMenuStrip
+			// 
+			this.ContextMenuStrip.Name = "ContextMenuStrip";
+			this.ContextMenuStrip.Size = new System.Drawing.Size(61, 4);
+			// 
+			// NotifyIcon
+			// 
+			this.NotifyIcon.Text = "notifyIcon1";
+			this.NotifyIcon.Visible = true;
+			// 
 			// Weerstation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,6 +467,8 @@
 		private System.Windows.Forms.Label DescriptionLabel;
 		private System.Windows.Forms.Label LocationLabel;
 		private System.Windows.Forms.PictureBox WeatherIconPictureBox;
+		private new System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
+		private System.Windows.Forms.NotifyIcon NotifyIcon;
 	}
 }
 

@@ -17,8 +17,6 @@ namespace Stenden_Weerstation
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Weerstation());
-			//WeatherController weatherController = new WeatherController();
-			//weatherController.GetLatestForecastFromDatabase(2756136);
 		}
 	}
 }
