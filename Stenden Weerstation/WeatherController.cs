@@ -128,7 +128,7 @@ namespace Stenden_Weerstation
 					using (SqlCommand command = connection.CreateCommand())
 					{
 						command.CommandType = CommandType.StoredProcedure;
-						command.CommandText = "GetLatestForecastByCityId";
+						command.CommandText = "GetForecastByCityIdAndDateTime";
 
 						//Add input parameters
 						command.Parameters.AddWithValue("@City_Id", City_Id);
