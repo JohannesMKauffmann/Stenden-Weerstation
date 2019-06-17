@@ -57,7 +57,6 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrendController.cs" />
     <Compile Include="WeatherController.cs" />
     <Compile Include="Weerstation.cs">
       <SubType>Form</SubType>

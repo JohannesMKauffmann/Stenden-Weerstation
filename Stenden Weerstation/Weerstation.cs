@@ -18,7 +18,6 @@ namespace Stenden_Weerstation
 	public partial class Weerstation : Form
 	{
 		private WeatherController WController { get; set; }
-		private TrendController TController { get; set; }
 		public new string Location { get; set; }
 		public int Interval { get; set; }
 		private bool MetricSystem { get; set; }
@@ -34,13 +33,14 @@ namespace Stenden_Weerstation
 			T.Start();
 			Thread.Sleep(2000);
 			InitializeComponent();
-			T.Abort();
 
 			WController = new WeatherController();
 			City_Id = DefaultCityId;
 			Location = DefaultLocation;
 			MetricSystem = true;
 			Language = CultureInfo.CurrentCulture.ToString().Substring(3);
+
+			T.Abort();
 		}
 
 		public void StartSplashScreen()
