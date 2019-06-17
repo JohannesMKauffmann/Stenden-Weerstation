@@ -18,14 +18,15 @@ namespace Stenden_Weerstation
 	public partial class Weerstation : Form
 	{
 		private WeatherController WController { get; set; }
-		public new string Location { get; set; }
+		public string Plaatsnaam { get; set; }
 		public int Interval { get; set; }
 		private bool MetricSystem { get; set; }
 		private int City_Id { get; set; }
 		public string Language { get; set; }
 
 		private const int DefaultCityId = 2756136;
-		private const string DefaultLocation = "Emmen";
+		private const string DefaultPlaatsnaam = "Emmen";
+		private const int DefaultInterval = 60;
 
 		public Weerstation()
 		{
@@ -35,8 +36,10 @@ namespace Stenden_Weerstation
 			InitializeComponent();
 
 			WController = new WeatherController();
+			//double[] arr = WController.GetAvgTempPerDayByCity(2756136);
 			City_Id = DefaultCityId;
-			Location = DefaultLocation;
+			Plaatsnaam = DefaultPlaatsnaam;
+			Interval = DefaultInterval;
 			MetricSystem = true;
 			Language = CultureInfo.CurrentCulture.ToString().Substring(3);
 
@@ -73,6 +76,9 @@ namespace Stenden_Weerstation
 
 		private void UpdateForm(Forecast forecast)
 		{
+			PlaatsTextBox.Text = Plaatsnaam;
+			IntervalTextBox.Text = Interval.ToString();
+			LocationLabel.Text = Plaatsnaam;
 			DescriptionLabel.Text = forecast.weather.First().description;
 			WeatherIconPictureBox.ImageLocation = "http://openweathermap.org/img/w/" + forecast.weather.First().icon + ".png";
 			TemperatuurLabel.Text = BuildTemperatureString(forecast.main.temp);
@@ -157,11 +163,18 @@ namespace Stenden_Weerstation
 				MetricSystem = CelciusRadioButton.Checked;
 				if (PlaatsTextBox.Text.Length > 0)
 				{
-					City_Id = GetIdByPlaatsnaam(PlaatsTextBox.Text).First().Key;
-					Location = PlaatsTextBox.Text;
-					if (WController.forecast != null)
+					if (!PlaatsTextBox.Text.Equals(Plaatsnaam))
 					{
-						UpdateForm(WController.forecast);
+						Plaatsnaam = PlaatsTextBox.Text;
+						City_Id = GetIdByPlaatsnaam(Plaatsnaam).First().Key;
+						UpdateApiAndForm();
+					}
+					else
+					{
+						if (WController.forecast != null)
+						{
+							UpdateForm(WController.forecast);
+						}
 					}
 					MessageBox.Show("De instellingen zijn succesvol toegepast.");
 				}
@@ -207,8 +220,8 @@ namespace Stenden_Weerstation
 			}
 			if (Matches.Count < 1)
 			{
-				Matches.Add(DefaultCityId, DefaultLocation);
-				MessageBox.Show("Niet gevonden. Locatie staat op de standaardwaarde: " + DefaultLocation);
+				Matches.Add(DefaultCityId, DefaultPlaatsnaam);
+				MessageBox.Show("Niet gevonden. Locatie staat op de standaardwaarde: " + DefaultPlaatsnaam);
 			}
 			return Matches;
 		}

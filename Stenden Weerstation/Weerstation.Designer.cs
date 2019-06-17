@@ -30,9 +30,9 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Weerstation));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.MainTabControl = new System.Windows.Forms.TabControl();
 			this.ActueelTabPage = new System.Windows.Forms.TabPage();
 			this.WeatherIconPictureBox = new System.Windows.Forms.PictureBox();
@@ -220,16 +220,16 @@
 			// 
 			// WeatherTrendChart
 			// 
-			chartArea2.Name = "ChartArea1";
-			this.WeatherTrendChart.ChartAreas.Add(chartArea2);
-			legend2.Name = "Legend1";
-			this.WeatherTrendChart.Legends.Add(legend2);
+			chartArea9.Name = "ChartArea1";
+			this.WeatherTrendChart.ChartAreas.Add(chartArea9);
+			legend9.Name = "Legend1";
+			this.WeatherTrendChart.Legends.Add(legend9);
 			this.WeatherTrendChart.Location = new System.Drawing.Point(261, 223);
 			this.WeatherTrendChart.Name = "WeatherTrendChart";
-			series2.ChartArea = "ChartArea1";
-			series2.Legend = "Legend1";
-			series2.Name = "Series1";
-			this.WeatherTrendChart.Series.Add(series2);
+			series9.ChartArea = "ChartArea1";
+			series9.Legend = "Legend1";
+			series9.Name = "Series1";
+			this.WeatherTrendChart.Series.Add(series9);
 			this.WeatherTrendChart.Size = new System.Drawing.Size(300, 300);
 			this.WeatherTrendChart.TabIndex = 3;
 			this.WeatherTrendChart.Text = "chart1";
@@ -416,8 +416,10 @@
 			this.ClientSize = new System.Drawing.Size(849, 597);
 			this.Controls.Add(this.MainTabControl);
 			this.DoubleBuffered = true;
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+			this.MaximizeBox = false;
 			this.Name = "Weerstation";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Stenden Weerstation";
 			this.Load += new System.EventHandler(this.Weerstation_Load);
 			this.MainTabControl.ResumeLayout(false);

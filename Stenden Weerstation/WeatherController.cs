@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,25 +16,24 @@ namespace Stenden_Weerstation
 	class WeatherController
 	{
 		private const string APIKEY = "0a03d77b213b8ea8fff7162343e65639";
+		private const string ConnectionString = "Data Source=.;Initial Catalog=StendenWeerstation;Integrated Security=True";
 
 		public Forecast forecast;
 
-		public string BuildRequestUrl(int CityId, string language)
+		public void QueryWeatherApi(int City_Id, string Language)
 		{
-			language = language.ToLower();
-			string url = "https://api.openweathermap.org/data/2.5/weather?id=" + 
-				CityId + "&lang=" + language + "&appid=" + APIKEY;
-			return url;
-		}
-
-		public void SendWeatherRequest(int City_Id, string language)
-		{
+			string url = String.Format("https://api.openweathermap.org/data/2.5/weather?id={0}&lang={1}&appid={2}", City_Id, Language, APIKEY);
 			try
-			{
-				string url = BuildRequestUrl(City_Id, language);
+			{				
 				WebClient client = new WebClient();
 				string responseBody = client.DownloadString(url);
-				ParseForecastResponse(responseBody);
+
+				using (JsonTextReader reader = new JsonTextReader(new StringReader(responseBody)))
+				{
+					JsonSerializer serializer = new JsonSerializer();
+					Forecast forecast = (Forecast) serializer.Deserialize(reader, typeof(Forecast));
+					WriteForecastToDatabase(forecast);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -41,22 +41,11 @@ namespace Stenden_Weerstation
 			}
 		}
 
-		public void ParseForecastResponse(string responseBody)
-		{
-			using (JsonTextReader reader = new JsonTextReader(new StringReader(responseBody)))
-			{
-				JsonSerializer serializer = new JsonSerializer();
-				Forecast forecast = (Forecast) serializer.Deserialize(reader, typeof(Forecast));
-				WriteForecastToDatabase(forecast);
-			}
-		}
-
 		public void WriteForecastToDatabase(Forecast forecast)
 		{
 			try
 			{
-				string connectionString = "Data Source=.;Initial Catalog=StendenWeerstation;Integrated Security=True";
-				using (SqlConnection connection = new SqlConnection(connectionString))
+				using (SqlConnection connection = new SqlConnection(ConnectionString))
 				{
 					using (SqlCommand command = connection.CreateCommand())
 					{
@@ -86,8 +75,7 @@ namespace Stenden_Weerstation
 			int MaxPK = -1;
 			try
 			{
-				string connectionString = "Data Source=.;Initial Catalog=StendenWeerstation;Integrated Security=True";
-				using (SqlConnection connection = new SqlConnection(connectionString))
+				using (SqlConnection connection = new SqlConnection(ConnectionString))
 				{
 					using (SqlCommand command = connection.CreateCommand())
 					{
@@ -116,8 +104,7 @@ namespace Stenden_Weerstation
 		{
 			try
 			{
-				string connectionString = "Data Source=.;Initial Catalog=StendenWeerstation;Integrated Security=True";
-				using (SqlConnection connection = new SqlConnection(connectionString))
+				using (SqlConnection connection = new SqlConnection(ConnectionString))
 				{
 					using (SqlCommand command = connection.CreateCommand())
 					{
@@ -186,6 +173,80 @@ namespace Stenden_Weerstation
 			{
 				MessageBox.Show(ex.Message);
 			}
+		}
+
+		public double[] GetAvgTempPerDayByCity(int City_Id)
+		{
+			double[] AvgTemps = new double[ 5 ];
+
+			List<KeyValuePair<int, int>> Timestamps = GetTimestampFor5Days();
+
+			for (int i = 0; i < 5; i++)
+			{
+				using (SqlConnection connection = new SqlConnection(ConnectionString))
+				{
+					using (SqlCommand command = connection.CreateCommand())
+					{
+						try
+						{
+							command.CommandType = CommandType.StoredProcedure;
+							command.CommandText = "GetAvgTempPerDayByCity";
+
+							command.Parameters.AddWithValue("@Ochtend", Timestamps.ElementAt(i).Key);
+							command.Parameters.AddWithValue("@Avond", Timestamps.ElementAt(i).Value);
+							command.Parameters.AddWithValue("@City_Id", City_Id);
+
+							command.Parameters.AddWithValue("@AvgTemp", null);
+							command.Parameters[ "@AvgTemp" ].DbType = DbType.Double;
+							command.Parameters[ "@AvgTemp" ].Direction = ParameterDirection.Output;
+
+							connection.Open();
+							command.ExecuteNonQuery();
+
+							try
+							{
+								AvgTemps[ i ] = Double.Parse(command.Parameters[ "@AvgTemp" ].Value.ToString());
+							}
+							catch (FormatException)
+							{
+								AvgTemps[ i ] = 0;
+							}
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show(ex.Message);
+						}
+					}
+				}
+			}
+			return AvgTemps;
+		}
+
+		public List<KeyValuePair<int, int>> GetTimestampFor5Days()
+		{
+			List<KeyValuePair<int, int>> Timestamps = new List<KeyValuePair<int, int>>();
+			
+			int Year = DateTime.Today.Year;
+			int Month = DateTime.Today.Month;
+			int Day = DateTime.Today.Day;
+
+			for (int i = 0; i < 5; i++)
+			{
+				DateTime Ochtend = new DateTime(Year, Month, Day - i);
+				DateTime Avond = new DateTime(Year, Month, Day - i);
+				Avond = Avond.AddHours(23);
+				Avond = Avond.AddMinutes(59);
+				Avond = Avond.AddSeconds(59);
+
+				Timestamps.Add(
+					new KeyValuePair<int, int>(
+						(int) Ochtend.Subtract(new DateTime(1970, 1, 1)).TotalSeconds,
+						(int) Avond.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
+					)
+				);
+			}
+
+			return Timestamps;
 		}
 	}
 }
