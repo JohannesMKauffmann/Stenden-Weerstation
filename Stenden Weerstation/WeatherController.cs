@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
+using System.Net;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Stenden_Weerstation
 	class WeatherController
 	{
 		private const string APIKEY = "0a03d77b213b8ea8fff7162343e65639";
-		private static readonly HttpClient client = new HttpClient();
+		//private static readonly HttpClient client = new HttpClient();
 
 		//public delegate Forecast MyDel(int City_Id);
 
@@ -29,20 +30,21 @@ namespace Stenden_Weerstation
 			return url;
 		}
 
-		public async void SendWeatherRequest(int City_Id, string language)
+		public bool SendWeatherRequest(int City_Id, string language)
 		{
 			try
 			{
 				string url = BuildRequestUrl(City_Id, language);
-				string responseBody = await client.GetStringAsync(url);
+				//string responseBody = await client.GetStringAsync(url);
+				WebClient client = new WebClient();
+				string responseBody = client.DownloadString(url);
 				ParseForecastResponse(responseBody);
+				return true;
 			}
-			catch (HttpRequestException ex)
+			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
-				//fire event
-				//GetLatestForecastFromDatabase(City_Id);
-				//GetDataFromDb.Invoke(City_Id);
+				return false;
 			}
 		}
 
@@ -52,7 +54,7 @@ namespace Stenden_Weerstation
 			{
 				JsonSerializer serializer = new JsonSerializer();
 				Forecast forecast = (Forecast) serializer.Deserialize(reader, typeof(Forecast));
-				//WriteForecastToDatabase(forecast);
+				WriteForecastToDatabase(forecast);
 			}
 		}
 
@@ -79,7 +81,7 @@ namespace Stenden_Weerstation
 						command.ExecuteNonQuery();
 					}
 				}
-				//GetDataFromDb.Invoke(forecast.id);
+				GetLatestForecastFromDatabase(forecast.id);
 			}
 			catch (Exception ex)
 			{
@@ -106,10 +108,14 @@ namespace Stenden_Weerstation
 						MaxCommand.Parameters[ "@MaxDatetime" ].Direction = ParameterDirection.Output;
 						MaxCommand.ExecuteNonQuery();
 						MaxDatetime = Int32.Parse(MaxCommand.Parameters[ "@MaxDatetime" ].Value.ToString());
-					}
 
-					using (SqlCommand GetForecast = connection.CreateCommand())
-					{
+						SqlCommand GetForecast = connection.CreateCommand();
+						GetForecast.CommandType = CommandType.StoredProcedure;
+						GetForecast.CommandText = "GetLatestForecastByCityId";
+					//}
+
+					//using (SqlCommand GetForecast = connection.CreateCommand())
+					//{
 						GetForecast.CommandType = CommandType.StoredProcedure;
 						GetForecast.CommandText = "GetLatestForecastByCityId";
 
@@ -172,7 +178,7 @@ namespace Stenden_Weerstation
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.StackTrace);
+				MessageBox.Show(ex.Message);
 			}
 			return forecast;
 		}

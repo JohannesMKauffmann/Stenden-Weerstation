@@ -29,11 +29,12 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Weerstation));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.MainTabControl = new System.Windows.Forms.TabControl();
 			this.ActueelTabPage = new System.Windows.Forms.TabPage();
+			this.WeatherIconPictureBox = new System.Windows.Forms.PictureBox();
 			this.DescriptionLabel = new System.Windows.Forms.Label();
 			this.LocationLabel = new System.Windows.Forms.Label();
 			this.LatestUpdateLabel = new System.Windows.Forms.Label();
@@ -60,16 +61,15 @@
 			this.OptiesMainLabel = new System.Windows.Forms.Label();
 			this.WeerstationOptiesLabel = new System.Windows.Forms.Label();
 			this.StendenLogoOptiesPictureBox = new System.Windows.Forms.PictureBox();
-			this.WeatherIconPictureBox = new System.Windows.Forms.PictureBox();
 			this.MainTabControl.SuspendLayout();
 			this.ActueelTabPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.WeatherIconPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoActueelPictureBox)).BeginInit();
 			this.TrendTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WeatherTrendChart)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoTrendPictureBox)).BeginInit();
 			this.OptiesTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoOptiesPictureBox)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.WeatherIconPictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// MainTabControl
@@ -103,6 +103,14 @@
 			this.ActueelTabPage.TabIndex = 0;
 			this.ActueelTabPage.Text = "Actueel";
 			this.ActueelTabPage.UseVisualStyleBackColor = true;
+			// 
+			// WeatherIconPictureBox
+			// 
+			this.WeatherIconPictureBox.Location = new System.Drawing.Point(88, 391);
+			this.WeatherIconPictureBox.Name = "WeatherIconPictureBox";
+			this.WeatherIconPictureBox.Size = new System.Drawing.Size(122, 78);
+			this.WeatherIconPictureBox.TabIndex = 11;
+			this.WeatherIconPictureBox.TabStop = false;
 			// 
 			// DescriptionLabel
 			// 
@@ -209,16 +217,16 @@
 			// 
 			// WeatherTrendChart
 			// 
-			chartArea2.Name = "ChartArea1";
-			this.WeatherTrendChart.ChartAreas.Add(chartArea2);
-			legend2.Name = "Legend1";
-			this.WeatherTrendChart.Legends.Add(legend2);
+			chartArea1.Name = "ChartArea1";
+			this.WeatherTrendChart.ChartAreas.Add(chartArea1);
+			legend1.Name = "Legend1";
+			this.WeatherTrendChart.Legends.Add(legend1);
 			this.WeatherTrendChart.Location = new System.Drawing.Point(261, 223);
 			this.WeatherTrendChart.Name = "WeatherTrendChart";
-			series2.ChartArea = "ChartArea1";
-			series2.Legend = "Legend1";
-			series2.Name = "Series1";
-			this.WeatherTrendChart.Series.Add(series2);
+			series1.ChartArea = "ChartArea1";
+			series1.Legend = "Legend1";
+			series1.Name = "Series1";
+			this.WeatherTrendChart.Series.Add(series1);
 			this.WeatherTrendChart.Size = new System.Drawing.Size(300, 300);
 			this.WeatherTrendChart.TabIndex = 3;
 			this.WeatherTrendChart.Text = "chart1";
@@ -387,14 +395,6 @@
 			this.StendenLogoOptiesPictureBox.TabIndex = 0;
 			this.StendenLogoOptiesPictureBox.TabStop = false;
 			// 
-			// WeatherIconPictureBox
-			// 
-			this.WeatherIconPictureBox.Location = new System.Drawing.Point(88, 391);
-			this.WeatherIconPictureBox.Name = "WeatherIconPictureBox";
-			this.WeatherIconPictureBox.Size = new System.Drawing.Size(122, 78);
-			this.WeatherIconPictureBox.TabIndex = 11;
-			this.WeatherIconPictureBox.TabStop = false;
-			// 
 			// Weerstation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,11 +406,11 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "Weerstation";
 			this.Text = "Stenden Weerstation";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Weerstation_FormClosed);
 			this.Load += new System.EventHandler(this.Weerstation_Load);
 			this.MainTabControl.ResumeLayout(false);
 			this.ActueelTabPage.ResumeLayout(false);
 			this.ActueelTabPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.WeatherIconPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoActueelPictureBox)).EndInit();
 			this.TrendTabPage.ResumeLayout(false);
 			this.TrendTabPage.PerformLayout();
@@ -419,7 +419,6 @@
 			this.OptiesTabPage.ResumeLayout(false);
 			this.OptiesTabPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoOptiesPictureBox)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.WeatherIconPictureBox)).EndInit();
 			this.ResumeLayout(false);
 
 		}

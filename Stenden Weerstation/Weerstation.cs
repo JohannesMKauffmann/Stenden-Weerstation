@@ -41,8 +41,10 @@ namespace Stenden_Weerstation
 
 		private void Weerstation_Load(object sender, EventArgs e)
 		{
-			WController.SendWeatherRequest(City_Id, Language);
-			//UpdateForm(WController.GetLatestForecastFromDatabase(City_Id));
+			if(!WController.SendWeatherRequest(City_Id, Language))
+			{
+				UpdateForm(WController.GetLatestForecastFromDatabase(City_Id));
+			}
 
 			//////////////////////////////////////////////////////
 			//WController.GetDataFromDb += GetLatestForecast;   //
@@ -190,9 +192,5 @@ namespace Stenden_Weerstation
 			return Matches;
 		}
 
-		private void Weerstation_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			Application.Exit();
-		}
 	}
 }
