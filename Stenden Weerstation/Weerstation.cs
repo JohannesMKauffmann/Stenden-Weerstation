@@ -280,5 +280,32 @@ namespace Stenden_Weerstation
 		{
 			UpdateApiAndForm();
 		}
+
+		private void Weerstation_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			e.Cancel = true;
+			this.Hide();
+		}
+
+		private void toolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			this.Show();
+		}
+
+		private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			this.Show();
+		}
+
+		private void sluitenToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			NotifyIcon.Dispose();
+			Application.Exit();
+		}
+
+		private void optiesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Show();
+		}
 	}
 }
