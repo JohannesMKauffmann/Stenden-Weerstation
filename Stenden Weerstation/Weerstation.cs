@@ -91,19 +91,43 @@ namespace Stenden_Weerstation
 			DateTime LatestUpdate = forecast.datetime;
 			LatestUpdateLabel.Text = String.Format("[Laatste update: {0}]", LatestUpdate);
 			FillChart(WController.GetAvgTempPerDayByCity(City_Id));
+			TempToolStripTextBox.Text = BuildContextMenuTemperature(CalculateTemperature(forecast.main.temp, MetricSystem), MetricSystem);
+		}
+
+		private string BuildContextMenuTemperature(double Temp, bool MetricSystem)
+		{
+			if (MetricSystem)
+			{
+				return "Huidige temperatuur: " + Temp + " °C";
+			}
+			else
+			{
+				return "Huidige temperatuur: " + Temp + " °F";
+			}
+		}
+
+		private double CalculateTemperature(double Temp, bool MetricSystem)
+		{
+			if (MetricSystem)
+			{
+				return Math.Round(Temp - 273, 1);
+			}
+			else
+			{
+				return Math.Round((1.8 * (Temp - 273)) + 32, 1);
+			}
 		}
 
 		private string BuildTemperatureString(double temp)
 		{
-			string TemperatureString = "Temperature: ";
+			string TemperatureString = String.Format("Temperature: {0}", CalculateTemperature(temp, MetricSystem));
 			if (MetricSystem)
 			{
-				TemperatureString += Math.Round(temp - 273, 1).ToString() + " °C";
+				TemperatureString += " °C";
 			}
 			else
 			{
-				TemperatureString += Math.Round((1.8 * (temp - 273)) + 32, 1).ToString() + " °F";
-				//1.8 * (temp - 273) + 32
+				TemperatureString += " °F";
 			}
 			return TemperatureString;
 		}
@@ -233,23 +257,28 @@ namespace Stenden_Weerstation
 			{
 				if (Temps.AvgTemps[ i ] != 0)
 				{
-					if (MetricSystem)
-					{
-						Temps.AvgTemps[ i ] = Math.Round(Temps.AvgTemps[ i ] - 273, 1);
-					}
-					else
-					{
-						Temps.AvgTemps[ i ] = Math.Round((((Temps.AvgTemps[ i ] - 273) * 1.8) + 32), 1);
-					}
+					Temps.AvgTemps[ i ] = CalculateTemperature(Temps.AvgTemps[ i ], MetricSystem);
 				}
 			}
 
-			//TODO: Fix X values, to datetime
+			WeatherTrendChart.Series[ 0 ].Points.Clear();
+			
 			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(4), Temps.AvgTemps[ 4 ]);
 			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(3), Temps.AvgTemps[ 3 ]);
 			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(2), Temps.AvgTemps[ 2 ]);
 			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(1), Temps.AvgTemps[ 1 ]);
 			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(0), Temps.AvgTemps[ 0 ]);
+		}
+
+		private void overToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			AboutBox Box = new AboutBox();
+			Box.ShowDialog();
+		}
+
+		private void verversenToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			UpdateApiAndForm();
 		}
 	}
 }

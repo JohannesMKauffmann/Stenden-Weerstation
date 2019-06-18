@@ -1975,6 +1975,30 @@
   <metadata name="NotifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>255, 17</value>
   </metadata>
+  <data name="NotifyIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAMMOAADDDgAAAAAAAAAA
+        AAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AP///wD266xU+ONkm/jhV6n44Vap+OFWqfjhVqn44Vap+OFWqfjhVqn44Vap+ONkm/br
+        rFT///8A////AP///wD26KlW/t9Vq/3hZP/94Wb//eJm//3hZv/94Wb//eFm//3hZv/94Wb//eFm//3h
+        ZP/+31Sr9uipVv///wD///8A9tFapfzXXv/812D//Ndg//vWXP/71lv/+9Zb//vVW//71lv/+9Zc//vX
+        X//812D//Ndf//bRWqX///8A////APTBQ737zVn/+sxZ//rGSv/702//+9Rz//vUcv/71HL/+9Rz//vU
+        df/6yE//+spU//vMWf/0wUO9////AP///wDyszvF+sBS//m7Rf/96sf/////////////////////////
+        //////////////nGYv/5v07/8rQ6xf///wD///8A8KYyzfi0S//+qTH///v0//379v//+fD///rx///6
+        8v//+vL///ry///9+//96Mj/9649//CmMs3///8A////AO6XKtX+pD3/xbJg/1T6///r////4P////j4
+        7///9ur//vbr//726//+/Pf/+963//ahNv/ulyrV////AP///wDtiSHf/5El/wDs//8A6P//fPT//+f+
+        ///X/f////Li//7z5v////r//fDe//SaO//0mTn/7Ikh3////wD///8A7HsY5/2JKv8A6P//Btv9/xLd
+        /f/v////2f////327P//+/T/8o42//GCH//yizH/8400/+p7GuX///8A////AOluEu3/eRf/Fsvy/wDT
+        //8Czv7/CNT//37n/v//uob/8YUy//B9J//xgS3/8YEt//GBLf/pbhHv////AP///wDoYgzz9HUj/+p3
+        LP8iveb/ANL//xa/7v/VeDT/9G0X/+90JP/wdif/8HYn//B2J//wdif/6GIM8////wD///8A52Yb5e5q
+        H//yax7//2QN//9iCP//ZAz/82od/+1sIv/tbCL/7Wwi/+1sIv/tbCL/7mof/+dlG+X///8A////AO2p
+        hXrsUQL97WIa/+1kHf/tZB3/7WQd/+1kHf/tZB3/7WQd/+1kHf/tZB3/7WIa/+xRAv3tqIV6////AP//
+        /wD///8A7aaDfOZXE+3kRwD/40YA/+NGAP/jRwD/40YA/+NGAP/jRgD/5EcA/+ZXE+3tpoN8////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A//8AAMADAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIAB
+        AADAAwAA//8AAA==
+</value>
+  </data>
   <metadata name="Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

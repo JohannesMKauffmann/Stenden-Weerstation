@@ -63,6 +63,15 @@
 			this.WeerstationOptiesLabel = new System.Windows.Forms.Label();
 			this.StendenLogoOptiesPictureBox = new System.Windows.Forms.PictureBox();
 			this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.TempToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+			this.overToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.verversenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.sluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
 			this.Timer = new System.Windows.Forms.Timer(this.components);
 			this.MainTabControl.SuspendLayout();
@@ -74,6 +83,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoTrendPictureBox)).BeginInit();
 			this.OptiesTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoOptiesPictureBox)).BeginInit();
+			this.ContextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// MainTabControl
@@ -405,12 +415,81 @@
 			// 
 			// ContextMenuStrip
 			// 
+			this.ContextMenuStrip.AutoSize = false;
+			this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TempToolStripTextBox,
+            this.overToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.verversenToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.optiesToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.toolStripMenuItem1,
+            this.sluitenToolStripMenuItem});
 			this.ContextMenuStrip.Name = "ContextMenuStrip";
-			this.ContextMenuStrip.Size = new System.Drawing.Size(61, 4);
+			this.ContextMenuStrip.Size = new System.Drawing.Size(250, 179);
+			// 
+			// TempToolStripTextBox
+			// 
+			this.TempToolStripTextBox.BackColor = System.Drawing.Color.White;
+			this.TempToolStripTextBox.Enabled = false;
+			this.TempToolStripTextBox.ForeColor = System.Drawing.Color.Blue;
+			this.TempToolStripTextBox.Name = "TempToolStripTextBox";
+			this.TempToolStripTextBox.ReadOnly = true;
+			this.TempToolStripTextBox.Size = new System.Drawing.Size(200, 23);
+			// 
+			// overToolStripMenuItem
+			// 
+			this.overToolStripMenuItem.Name = "overToolStripMenuItem";
+			this.overToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.overToolStripMenuItem.Text = "Over...";
+			this.overToolStripMenuItem.Click += new System.EventHandler(this.overToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(246, 6);
+			// 
+			// verversenToolStripMenuItem
+			// 
+			this.verversenToolStripMenuItem.Name = "verversenToolStripMenuItem";
+			this.verversenToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.verversenToolStripMenuItem.Text = "Verversen...";
+			this.verversenToolStripMenuItem.Click += new System.EventHandler(this.verversenToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(246, 6);
+			// 
+			// optiesToolStripMenuItem
+			// 
+			this.optiesToolStripMenuItem.Name = "optiesToolStripMenuItem";
+			this.optiesToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.optiesToolStripMenuItem.Text = "Opties...";
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(246, 6);
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(260, 22);
+			this.toolStripMenuItem1.Text = "Open...";
+			// 
+			// sluitenToolStripMenuItem
+			// 
+			this.sluitenToolStripMenuItem.Name = "sluitenToolStripMenuItem";
+			this.sluitenToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.sluitenToolStripMenuItem.Text = "Sluiten";
 			// 
 			// NotifyIcon
 			// 
-			this.NotifyIcon.Text = "notifyIcon1";
+			this.NotifyIcon.ContextMenuStrip = this.ContextMenuStrip;
+			this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
+			this.NotifyIcon.Text = "NotifyIcon";
 			this.NotifyIcon.Visible = true;
 			// 
 			// Timer
@@ -445,6 +524,8 @@
 			this.OptiesTabPage.ResumeLayout(false);
 			this.OptiesTabPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.StendenLogoOptiesPictureBox)).EndInit();
+			this.ContextMenuStrip.ResumeLayout(false);
+			this.ContextMenuStrip.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -483,6 +564,15 @@
 		private new System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
 		private System.Windows.Forms.NotifyIcon NotifyIcon;
 		private System.Windows.Forms.Timer Timer;
+		private System.Windows.Forms.ToolStripMenuItem overToolStripMenuItem;
+		private System.Windows.Forms.ToolStripTextBox TempToolStripTextBox;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem verversenToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem optiesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem sluitenToolStripMenuItem;
 	}
 }
 
