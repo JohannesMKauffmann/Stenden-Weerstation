@@ -54,7 +54,6 @@ namespace Stenden_Weerstation
 						command.Parameters.AddWithValue("@Weather_Desc", forecast.weather.First().description);
 						command.Parameters.AddWithValue("@Weather_Icon", forecast.weather.First().icon);
 						command.Parameters.AddWithValue("@City_Id", forecast.id);
-						command.Parameters.AddWithValue("@Datetime", forecast.dt);
 						command.Parameters.AddWithValue("@Temp", forecast.main.temp);
 						command.Parameters.AddWithValue("@Humidity", forecast.main.humidity);
 						command.Parameters.AddWithValue("@Wind_Speed", forecast.wind.speed);
@@ -70,7 +69,7 @@ namespace Stenden_Weerstation
 			}
 		}
 
-		public int GetMaxPKFromDatabase()
+		public int GetMaxPKFromDatabase(int City_Id)
 		{
 			int MaxPK = -1;
 			try
@@ -80,7 +79,9 @@ namespace Stenden_Weerstation
 					using (SqlCommand command = connection.CreateCommand())
 					{
 						command.CommandType = CommandType.StoredProcedure;
-						command.CommandText = "GetMaxPK";
+						command.CommandText = "GetMaxPKByCity";
+
+						command.Parameters.AddWithValue("@City_Id", City_Id);
 
 						command.Parameters.AddWithValue("@MaxPK", null);
 						command.Parameters[ "@MaxPK" ].DbType = DbType.Int32;
@@ -100,7 +101,7 @@ namespace Stenden_Weerstation
 			return MaxPK;
 		}
 
-		public void GetLatestForecastFromDatabase(int City_Id, int MaxPK)
+		public void GetLatestForecastFromDatabase(int MaxPK)
 		{
 			try
 			{
@@ -109,10 +110,9 @@ namespace Stenden_Weerstation
 					using (SqlCommand command = connection.CreateCommand())
 					{
 						command.CommandType = CommandType.StoredProcedure;
-						command.CommandText = "GetForecastByCityIdAndPK";
+						command.CommandText = "GetForecastByMaxPK";
 						
 						//Add input parameters
-						command.Parameters.AddWithValue("@City_Id", City_Id);
 						command.Parameters.AddWithValue("@MaxPK", MaxPK);
 
 						//Add output parameters
@@ -127,7 +127,7 @@ namespace Stenden_Weerstation
 						command.Parameters[ "@Weather_Icon" ].Size = 3;
 
 						command.Parameters.AddWithValue("@Datetime", null);
-						command.Parameters[ "@Datetime" ].DbType = DbType.Int32;
+						command.Parameters[ "@Datetime" ].DbType = DbType.DateTime;
 						command.Parameters[ "@Datetime" ].Direction = ParameterDirection.Output;
 
 						command.Parameters.AddWithValue("@Temp", null);
@@ -157,7 +157,7 @@ namespace Stenden_Weerstation
 								icon = command.Parameters[ "@Weather_Icon" ].Value.ToString()
 							}
 						};
-						forecast.dt = Int32.Parse(command.Parameters[ "@Datetime" ].Value.ToString());
+						forecast.datetime = DateTime.Parse(command.Parameters[ "@Datetime" ].Value.ToString());
 						forecast.main = new Main {
 							temp = Double.Parse(command.Parameters[ "@Temp" ].Value.ToString()),
 							humidity = Int32.Parse(command.Parameters[ "@Humidity" ].Value.ToString())
@@ -174,16 +174,20 @@ namespace Stenden_Weerstation
 				MessageBox.Show(ex.Message);
 			}
 		}
-
-		public double[] GetAvgTempPerDayByCity(int City_Id)
+		
+		public Temps GetAvgTempPerDayByCity(int City_Id)
 		{
-			double[] AvgTemps = new double[ 5 ];
+			Temps Temps = new Temps();
 
-			List<KeyValuePair<int, int>> Timestamps = GetTimestampFor5Days();
+			Temps.PastDays = new List<DateTime>();
+			Temps.AvgTemps = new double[ 5 ];
 
-			for (int i = 0; i < 5; i++)
+			int Today = (int) DateTime.UtcNow.ToLocalTime().Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+
+			using (SqlConnection connection = new SqlConnection(ConnectionString))
 			{
-				using (SqlConnection connection = new SqlConnection(ConnectionString))
+				connection.Open();
+				for (int i = 0; i < 5; i++)
 				{
 					using (SqlCommand command = connection.CreateCommand())
 					{
@@ -192,24 +196,31 @@ namespace Stenden_Weerstation
 							command.CommandType = CommandType.StoredProcedure;
 							command.CommandText = "GetAvgTempPerDayByCity";
 
-							command.Parameters.AddWithValue("@Ochtend", Timestamps.ElementAt(i).Key);
-							command.Parameters.AddWithValue("@Avond", Timestamps.ElementAt(i).Value);
+							int TmpTimestap = Today - i * 86400;
+							DateTime Date = new DateTime(1970, 1, 1);
+							//Date = Date.ToLocalTime();
+							Date = Date.AddSeconds(TmpTimestap);
+
+							Temps.PastDays.Add(Date);
+							
+							command.Parameters.AddWithValue("@Year", Date.Year);
+							command.Parameters.AddWithValue("@Month", Date.Month);
+							command.Parameters.AddWithValue("@Day", Date.Day);
 							command.Parameters.AddWithValue("@City_Id", City_Id);
 
 							command.Parameters.AddWithValue("@AvgTemp", null);
 							command.Parameters[ "@AvgTemp" ].DbType = DbType.Double;
 							command.Parameters[ "@AvgTemp" ].Direction = ParameterDirection.Output;
 
-							connection.Open();
 							command.ExecuteNonQuery();
 
 							try
 							{
-								AvgTemps[ i ] = Double.Parse(command.Parameters[ "@AvgTemp" ].Value.ToString());
+								Temps.AvgTemps[ i ] = Double.Parse(command.Parameters[ "@AvgTemp" ].Value.ToString());
 							}
 							catch (FormatException)
 							{
-								AvgTemps[ i ] = 0;
+								Temps.AvgTemps[ i ] = 0;
 							}
 						}
 						catch (Exception ex)
@@ -219,34 +230,7 @@ namespace Stenden_Weerstation
 					}
 				}
 			}
-			return AvgTemps;
-		}
-
-		public List<KeyValuePair<int, int>> GetTimestampFor5Days()
-		{
-			List<KeyValuePair<int, int>> Timestamps = new List<KeyValuePair<int, int>>();
-			
-			int Year = DateTime.Today.Year;
-			int Month = DateTime.Today.Month;
-			int Day = DateTime.Today.Day;
-
-			for (int i = 0; i < 5; i++)
-			{
-				DateTime Ochtend = new DateTime(Year, Month, Day - i);
-				DateTime Avond = new DateTime(Year, Month, Day - i);
-				Avond = Avond.AddHours(23);
-				Avond = Avond.AddMinutes(59);
-				Avond = Avond.AddSeconds(59);
-
-				Timestamps.Add(
-					new KeyValuePair<int, int>(
-						(int) Ochtend.Subtract(new DateTime(1970, 1, 1)).TotalSeconds,
-						(int) Avond.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
-					)
-				);
-			}
-
-			return Timestamps;
+			return Temps;
 		}
 	}
 }

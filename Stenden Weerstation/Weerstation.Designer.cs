@@ -30,9 +30,9 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Weerstation));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.MainTabControl = new System.Windows.Forms.TabControl();
 			this.ActueelTabPage = new System.Windows.Forms.TabPage();
 			this.WeatherIconPictureBox = new System.Windows.Forms.PictureBox();
@@ -64,6 +64,7 @@
 			this.StendenLogoOptiesPictureBox = new System.Windows.Forms.PictureBox();
 			this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.Timer = new System.Windows.Forms.Timer(this.components);
 			this.MainTabControl.SuspendLayout();
 			this.ActueelTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WeatherIconPictureBox)).BeginInit();
@@ -220,17 +221,21 @@
 			// 
 			// WeatherTrendChart
 			// 
-			chartArea9.Name = "ChartArea1";
-			this.WeatherTrendChart.ChartAreas.Add(chartArea9);
-			legend9.Name = "Legend1";
-			this.WeatherTrendChart.Legends.Add(legend9);
-			this.WeatherTrendChart.Location = new System.Drawing.Point(261, 223);
+			this.WeatherTrendChart.BackColor = System.Drawing.SystemColors.Control;
+			chartArea3.Name = "ChartArea1";
+			this.WeatherTrendChart.ChartAreas.Add(chartArea3);
+			legend3.Name = "Legend1";
+			this.WeatherTrendChart.Legends.Add(legend3);
+			this.WeatherTrendChart.Location = new System.Drawing.Point(242, 211);
 			this.WeatherTrendChart.Name = "WeatherTrendChart";
-			series9.ChartArea = "ChartArea1";
-			series9.Legend = "Legend1";
-			series9.Name = "Series1";
-			this.WeatherTrendChart.Series.Add(series9);
-			this.WeatherTrendChart.Size = new System.Drawing.Size(300, 300);
+			series3.ChartArea = "ChartArea1";
+			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series3.Legend = "Legend1";
+			series3.Name = "Gemiddelde Temperatuur";
+			series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+			series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+			this.WeatherTrendChart.Series.Add(series3);
+			this.WeatherTrendChart.Size = new System.Drawing.Size(400, 300);
 			this.WeatherTrendChart.TabIndex = 3;
 			this.WeatherTrendChart.Text = "chart1";
 			// 
@@ -408,6 +413,12 @@
 			this.NotifyIcon.Text = "notifyIcon1";
 			this.NotifyIcon.Visible = true;
 			// 
+			// Timer
+			// 
+			this.Timer.Enabled = true;
+			this.Timer.Interval = 60000;
+			this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+			// 
 			// Weerstation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -471,6 +482,7 @@
 		private System.Windows.Forms.PictureBox WeatherIconPictureBox;
 		private new System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
 		private System.Windows.Forms.NotifyIcon NotifyIcon;
+		private System.Windows.Forms.Timer Timer;
 	}
 }
 

@@ -8,7 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -18,11 +17,11 @@ namespace Stenden_Weerstation
 	public partial class Weerstation : Form
 	{
 		private WeatherController WController { get; set; }
-		public string Plaatsnaam { get; set; }
-		public int Interval { get; set; }
+		private string Plaatsnaam { get; set; }
+		private int Interval { get; set; }
 		private bool MetricSystem { get; set; }
 		private int City_Id { get; set; }
-		public string Language { get; set; }
+		private string Language { get; set; }
 
 		private const int DefaultCityId = 2756136;
 		private const string DefaultPlaatsnaam = "Emmen";
@@ -36,7 +35,6 @@ namespace Stenden_Weerstation
 			InitializeComponent();
 
 			WController = new WeatherController();
-			//double[] arr = WController.GetAvgTempPerDayByCity(2756136);
 			City_Id = DefaultCityId;
 			Plaatsnaam = DefaultPlaatsnaam;
 			Interval = DefaultInterval;
@@ -44,6 +42,12 @@ namespace Stenden_Weerstation
 			Language = CultureInfo.CurrentCulture.ToString().Substring(3);
 
 			T.Abort();
+		}
+
+		private void Timer_Tick(object sender, EventArgs e)
+		{
+			Timer.Interval = Interval * 1000;
+			UpdateApiAndForm();
 		}
 
 		public void StartSplashScreen()
@@ -58,12 +62,12 @@ namespace Stenden_Weerstation
 
 		private void UpdateApiAndForm()
 		{
-			WController.SendWeatherRequest(City_Id, Language);
+			WController.QueryWeatherApi(City_Id, Language);
 
 			// get latest forecast from DB, indepent of connection
 			// if request was succesfull, latest forecast is already written to DB
-			int MaxPK = WController.GetMaxPKFromDatabase();
-			WController.GetLatestForecastFromDatabase(City_Id, MaxPK);
+			int MaxPK = WController.GetMaxPKFromDatabase(City_Id);
+			WController.GetLatestForecastFromDatabase(MaxPK);
 			try
 			{
 				UpdateForm(WController.forecast);
@@ -82,11 +86,11 @@ namespace Stenden_Weerstation
 			DescriptionLabel.Text = forecast.weather.First().description;
 			WeatherIconPictureBox.ImageLocation = "http://openweathermap.org/img/w/" + forecast.weather.First().icon + ".png";
 			TemperatuurLabel.Text = BuildTemperatureString(forecast.main.temp);
-			LuchtvochtigheidLabel.Text = BuildHumidityString(forecast.main.humidity);
+			LuchtvochtigheidLabel.Text = String.Format("Luchtvochtigheid: {0}%", forecast.main.humidity);
 			WindLabel.Text = BuildWindString(forecast.wind.speed, forecast.wind.deg);
-			DateTime LatestUpdate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			LatestUpdate = LatestUpdate.AddSeconds(forecast.dt);
-			LatestUpdateLabel.Text = "[Laatste update: " + LatestUpdate.ToLocalTime().ToString() + "]";
+			DateTime LatestUpdate = forecast.datetime;
+			LatestUpdateLabel.Text = String.Format("[Laatste update: {0}]", LatestUpdate);
+			FillChart(WController.GetAvgTempPerDayByCity(City_Id));
 		}
 
 		private string BuildTemperatureString(double temp)
@@ -98,15 +102,10 @@ namespace Stenden_Weerstation
 			}
 			else
 			{
-				TemperatureString += Math.Round(((temp - 273 * 9) / 5) + 32, 1).ToString() + " °F";
+				TemperatureString += Math.Round((1.8 * (temp - 273)) + 32, 1).ToString() + " °F";
+				//1.8 * (temp - 273) + 32
 			}
 			return TemperatureString;
-		}
-
-		private string BuildHumidityString(int humidity)
-		{
-			string HumidityString = "Luchtvochtigheid: " + humidity.ToString() + "%";
-			return HumidityString;
 		}
 
 		private string BuildWindString(double speed, double deg)
@@ -118,7 +117,7 @@ namespace Stenden_Weerstation
 			}
 			else if (deg >= 22.5 && deg < 67.5)
 			{
-				WindString += "Nooroosterwind";
+				WindString += "Noordoosterwind";
 			}
 			else if (deg >= 67.5 && deg < 112.5)
 			{
@@ -160,6 +159,7 @@ namespace Stenden_Weerstation
 			if (Int32.TryParse(IntervalTextBox.Text, out int number) && number > 0)
 			{
 				Interval = number;
+				Timer.Interval = Interval * 1000;
 				MetricSystem = CelciusRadioButton.Checked;
 				if (PlaatsTextBox.Text.Length > 0)
 				{
@@ -224,6 +224,32 @@ namespace Stenden_Weerstation
 				MessageBox.Show("Niet gevonden. Locatie staat op de standaardwaarde: " + DefaultPlaatsnaam);
 			}
 			return Matches;
+		}
+
+		private void FillChart(Temps Temps)
+		{
+			int Length = Temps.AvgTemps.Count();
+			for (int i = 0; i < Length; i++)
+			{
+				if (Temps.AvgTemps[ i ] != 0)
+				{
+					if (MetricSystem)
+					{
+						Temps.AvgTemps[ i ] = Math.Round(Temps.AvgTemps[ i ] - 273, 1);
+					}
+					else
+					{
+						Temps.AvgTemps[ i ] = Math.Round((((Temps.AvgTemps[ i ] - 273) * 1.8) + 32), 1);
+					}
+				}
+			}
+
+			//TODO: Fix X values, to datetime
+			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(4), Temps.AvgTemps[ 4 ]);
+			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(3), Temps.AvgTemps[ 3 ]);
+			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(2), Temps.AvgTemps[ 2 ]);
+			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(1), Temps.AvgTemps[ 1 ]);
+			WeatherTrendChart.Series[ "Gemiddelde Temperatuur" ].Points.AddXY(Temps.PastDays.ElementAt(0), Temps.AvgTemps[ 0 ]);
 		}
 	}
 }
