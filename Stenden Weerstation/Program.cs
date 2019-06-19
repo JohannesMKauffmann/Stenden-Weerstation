@@ -17,7 +17,6 @@ namespace Stenden_Weerstation
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Weerstation());
-			Environment.Exit(0);
 		}
 	}
 }

@@ -283,8 +283,11 @@ namespace Stenden_Weerstation
 
 		private void Weerstation_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			e.Cancel = true;
-			this.Hide();
+			if (e.CloseReason == CloseReason.UserClosing)
+			{
+				e.Cancel = true;
+				this.Hide();
+			}
 		}
 
 		private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -305,7 +308,8 @@ namespace Stenden_Weerstation
 
 		private void optiesToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			this.Show();
+			MainTabControl.SelectTab("OptiesTabPage");
+			Show();
 		}
 	}
 }
