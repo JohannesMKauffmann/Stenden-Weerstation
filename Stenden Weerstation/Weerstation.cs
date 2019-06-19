@@ -31,7 +31,7 @@ namespace Stenden_Weerstation
 		{
 			Thread T = new Thread(new ThreadStart(StartSplashScreen));
 			T.Start();
-			Thread.Sleep(2000);
+			Thread.Sleep(1800);
 			InitializeComponent();
 
 			WController = new WeatherController();
