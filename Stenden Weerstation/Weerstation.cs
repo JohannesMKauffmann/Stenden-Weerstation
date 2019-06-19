@@ -135,15 +135,15 @@ namespace Stenden_Weerstation
 		private string BuildWindString(double speed, double deg)
 		{
 			string WindString = "";
-			if (deg >= 347.75 && deg < 12.25)
+			if (deg >= 336.5 && deg < 22.5)
 			{
 				WindString += "Noorderwind";
 			}
-			else if (deg >= 12.25 && deg < 34.75)
+			else if (deg >= 22.5 && deg < 67.5)
 			{
 				WindString += "Noordoosterwind";
 			}
-			else if (deg >= 34.75 && deg < 57.25)//
+			else if (deg >= 67.5 && deg < 112.5)
 			{
 				WindString += "Oosterwind";
 			}
