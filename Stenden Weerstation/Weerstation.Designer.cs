@@ -30,9 +30,9 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Weerstation));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.MainTabControl = new System.Windows.Forms.TabControl();
 			this.ActueelTabPage = new System.Windows.Forms.TabPage();
 			this.WeatherIconPictureBox = new System.Windows.Forms.PictureBox();
@@ -232,19 +232,19 @@
 			// WeatherTrendChart
 			// 
 			this.WeatherTrendChart.BackColor = System.Drawing.SystemColors.Control;
-			chartArea9.Name = "ChartArea1";
-			this.WeatherTrendChart.ChartAreas.Add(chartArea9);
-			legend9.Name = "Legend1";
-			this.WeatherTrendChart.Legends.Add(legend9);
+			chartArea2.Name = "ChartArea1";
+			this.WeatherTrendChart.ChartAreas.Add(chartArea2);
+			legend2.Name = "Legend1";
+			this.WeatherTrendChart.Legends.Add(legend2);
 			this.WeatherTrendChart.Location = new System.Drawing.Point(242, 211);
 			this.WeatherTrendChart.Name = "WeatherTrendChart";
-			series9.ChartArea = "ChartArea1";
-			series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series9.Legend = "Legend1";
-			series9.Name = "Gemiddelde Temperatuur";
-			series9.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-			series9.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-			this.WeatherTrendChart.Series.Add(series9);
+			series2.ChartArea = "ChartArea1";
+			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series2.Legend = "Legend1";
+			series2.Name = "Gemiddelde Temperatuur";
+			series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+			series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+			this.WeatherTrendChart.Series.Add(series2);
 			this.WeatherTrendChart.Size = new System.Drawing.Size(400, 300);
 			this.WeatherTrendChart.TabIndex = 3;
 			this.WeatherTrendChart.Text = "chart1";
@@ -415,7 +415,6 @@
 			// 
 			// ContextMenuStrip
 			// 
-			this.ContextMenuStrip.AutoSize = false;
 			this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TempToolStripTextBox,
             this.overToolStripMenuItem,
@@ -427,7 +426,8 @@
             this.toolStripMenuItem1,
             this.sluitenToolStripMenuItem});
 			this.ContextMenuStrip.Name = "ContextMenuStrip";
-			this.ContextMenuStrip.Size = new System.Drawing.Size(250, 179);
+			this.ContextMenuStrip.ShowImageMargin = false;
+			this.ContextMenuStrip.Size = new System.Drawing.Size(236, 179);
 			// 
 			// TempToolStripTextBox
 			// 
@@ -441,50 +441,50 @@
 			// overToolStripMenuItem
 			// 
 			this.overToolStripMenuItem.Name = "overToolStripMenuItem";
-			this.overToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.overToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
 			this.overToolStripMenuItem.Text = "Over...";
 			this.overToolStripMenuItem.Click += new System.EventHandler(this.overToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(246, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
 			// 
 			// verversenToolStripMenuItem
 			// 
 			this.verversenToolStripMenuItem.Name = "verversenToolStripMenuItem";
-			this.verversenToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.verversenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
 			this.verversenToolStripMenuItem.Text = "Verversen...";
 			this.verversenToolStripMenuItem.Click += new System.EventHandler(this.verversenToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(246, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(232, 6);
 			// 
 			// optiesToolStripMenuItem
 			// 
 			this.optiesToolStripMenuItem.Name = "optiesToolStripMenuItem";
-			this.optiesToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.optiesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
 			this.optiesToolStripMenuItem.Text = "Opties...";
 			this.optiesToolStripMenuItem.Click += new System.EventHandler(this.optiesToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(246, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(232, 6);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(260, 22);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
 			this.toolStripMenuItem1.Text = "Open...";
 			this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
 			// 
 			// sluitenToolStripMenuItem
 			// 
 			this.sluitenToolStripMenuItem.Name = "sluitenToolStripMenuItem";
-			this.sluitenToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+			this.sluitenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
 			this.sluitenToolStripMenuItem.Text = "Sluiten";
 			this.sluitenToolStripMenuItem.Click += new System.EventHandler(this.sluitenToolStripMenuItem_Click);
 			// 
